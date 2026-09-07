@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import styles from "./style.module.scss";
-import { Images, Svgs } from "../../assets";
-import { CONSTANT } from "../../util";
-import Modal from "../Modal";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useState } from 'react';
+import styles from './style.module.scss';
+import { Images, Svgs } from '../../assets';
+import { CONSTANT } from '../../util';
+import Modal from '../Modal';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 let cnt = 0;
 
@@ -14,14 +14,14 @@ function kakaoMapLoad() {
   try {
     // @ts-ignore
     new daum.roughmap.Lander({
-      timestamp: "1788685396186",
-      key: "2voxr6z3q7dy",
-      mapWidth: "640",
-      mapHeight: "360",
+      timestamp: '1788685396186',
+      key: '2voxr6z3q7dy',
+      mapWidth: '640',
+      mapHeight: '360'
     }).render();
     cnt++;
   } catch (error) {
-    console.error("kakaoMapLoad error", error);
+    console.error('kakaoMapLoad error', error);
   }
 }
 
@@ -31,7 +31,7 @@ function tmapLoad() {
   const fallbackUrl = `https://www.tmap.co.kr/tmap2/mobile/main.do`;
 
   const start = Date.now();
-  window.open(schemeUrl, "_blank");
+  window.open(schemeUrl, '_blank');
 
   window.setTimeout(() => {
     // 스킴이 막히거나 앱 미설치면 대체 링크로
@@ -42,10 +42,19 @@ function tmapLoad() {
 }
 
 const SHUTTLE_BUS_IMAGE: { imgUrl: string; infomation: string }[] = [
-  { imgUrl: Images.shuttleBus1, infomation: `문래역 4번출구로 나오셔서 우측으로 바라보시면\n[셔틀버스 타는곳] 화살표가 보입니다.` },
-  { imgUrl: Images.shuttleBus2, infomation: `위 사진 길을 따라서 250M 앞으로 직진해주세요.` },
+  {
+    imgUrl: Images.shuttleBus1,
+    infomation: `문래역 4번출구로 나오셔서 우측으로 바라보시면\n[셔틀버스 타는곳] 화살표가 보입니다.`
+  },
+  {
+    imgUrl: Images.shuttleBus2,
+    infomation: `위 사진 길을 따라서 250M 앞으로 직진해주세요.`
+  },
   { imgUrl: Images.shuttleBus3, infomation: `노란색 버스가 있습니다.` },
-  { imgUrl: Images.shuttleBus4, infomation: `[규수당웨딩]을 확인하시어 버스에 탑승해주시면 됩니다.\n셔틀버스는 3~5분간격으로 운행합니다.` },
+  {
+    imgUrl: Images.shuttleBus4,
+    infomation: `[규수당웨딩]을 확인하시어 버스에 탑승해주시면 됩니다.\n셔틀버스는 3~5분간격으로 운행합니다.`
+  }
 ];
 
 export default function Component() {
@@ -67,22 +76,31 @@ export default function Component() {
         </div>
 
         <div className={styles.map}>
-          <div id="daumRoughmapContainer1788685396186" className="root_daum_roughmap root_daum_roughmap_landing"></div>
+          <div
+            id="daumRoughmapContainer1788685396186"
+            className="root_daum_roughmap root_daum_roughmap_landing"
+          ></div>
           <div className={styles.link}>
-            <div className={styles.linkItem} onClick={() => window.open(CONSTANT.place.naver, "_blank")}>
-              <div className={[styles.circle, styles.naver].join(" ")}>
+            <div
+              className={styles.linkItem}
+              onClick={() => window.open(CONSTANT.place.naver, '_blank')}
+            >
+              <div className={[styles.circle, styles.naver].join(' ')}>
                 <img src={Images.naverMap} alt="네이버지도" />
               </div>
               <span>네이버지도</span>
             </div>
-            <div className={styles.linkItem} onClick={() => window.open(CONSTANT.place.kakao, "_blank")}>
-              <div className={[styles.circle, styles.kakao].join(" ")}>
+            <div
+              className={styles.linkItem}
+              onClick={() => window.open(CONSTANT.place.kakao, '_blank')}
+            >
+              <div className={[styles.circle, styles.kakao].join(' ')}>
                 <img src={Images.kakaoMap} alt="카카오맵" />
               </div>
               <span>카카오맵</span>
             </div>
             <div className={styles.linkItem} onClick={tmapLoad}>
-              <div className={[styles.circle, styles.tmap].join(" ")}>
+              <div className={[styles.circle, styles.tmap].join(' ')}>
                 <img src={Images.tMap} alt="티맵" />
               </div>
               <span>티맵</span>
@@ -97,17 +115,19 @@ export default function Component() {
               </div>
               지하철 이용시
             </div>
-            <div className={[styles.itemContent, styles.train].join(" ")}>
-              <div className={[styles.row, styles.green].join(" ")}>
+            <div className={[styles.itemContent, styles.train].join(' ')}>
+              <div className={[styles.row, styles.green].join(' ')}>
                 <span>2호선</span> 문래역
               </div>
               <div className={styles.row}>
-                - 셔틀버스 : 4번출구(뒷쪽) 셔틀버스 운행{" "}
+                - 셔틀버스 : 4번출구(뒷쪽) 셔틀버스 운행{' '}
                 <button onClick={() => setIsModal(true)}>
                   <Svgs.Search />
                 </button>
               </div>
-              <div className={styles.row}>- 도보 : 5번출구 전방 직진 300M</div>
+              <div className={styles.row}>
+                - 도보 : 5번출구 전방 직진 300M (약 7분)
+              </div>
             </div>
           </div>
           <div className={styles.item}>
@@ -117,17 +137,17 @@ export default function Component() {
               </div>
               버스 이용시
             </div>
-            <div className={[styles.itemContent, styles.bus].join(" ")}>
+            <div className={[styles.itemContent, styles.bus].join(' ')}>
               <div className={styles.row}>문래역 하차</div>
-              <div className={[styles.row, styles.blue].join(" ")}>
+              <div className={[styles.row, styles.blue].join(' ')}>
                 - 간선<span>641</span>
               </div>
-              <div className={[styles.row, styles.green].join(" ")}>
+              <div className={[styles.row, styles.green].join(' ')}>
                 - 지선<span>6211</span>
                 <span>6516</span>
                 <span>6625</span>
               </div>
-              <div className={[styles.row, styles.green].join(" ")}>
+              <div className={[styles.row, styles.green].join(' ')}>
                 - 마을<span>영등포05</span>
                 <span>영등포12</span>
               </div>
@@ -140,7 +160,7 @@ export default function Component() {
               </div>
               자가용 이용시
             </div>
-            <div className={[styles.itemContent, styles.car].join(" ")}>
+            <div className={[styles.itemContent, styles.car].join(' ')}>
               <div className={styles.row}>- 네비게이션</div>
               <ul>
                 <li>
@@ -180,7 +200,8 @@ export default function Component() {
           <div className={styles.division} />
           <div className={styles.list}>
             <div className={styles.page}>
-              {currentIndex + 1} / {SHUTTLE_BUS_IMAGE.length} <span>우측으로 넘겨주세요 {">"}</span>
+              {currentIndex + 1} / {SHUTTLE_BUS_IMAGE.length}{' '}
+              <span>우측으로 넘겨주세요 {'>'}</span>
             </div>
             <Swiper
               className={styles.swiper}

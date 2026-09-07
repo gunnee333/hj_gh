@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/hj_gh/static/css/main.27f9427e.css",
-    "main.js": "/hj_gh/static/js/main.0eb40fef.js",
+    "main.css": "/hj_gh/static/css/main.11a571f2.css",
+    "main.js": "/hj_gh/static/js/main.51e8e47c.js",
     "static/js/453.048226df.chunk.js": "/hj_gh/static/js/453.048226df.chunk.js",
     "static/media/shuttle_bus_3.jpeg": "/hj_gh/static/media/shuttle_bus_3.181de759a58c8f85cc23.jpeg",
     "static/media/shuttle_bus_1.jpeg": "/hj_gh/static/media/shuttle_bus_1.ca551487d56f7575bba9.jpeg",
     "static/media/shuttle_bus_2.jpeg": "/hj_gh/static/media/shuttle_bus_2.9c4ef89936ad6d12b7b6.jpeg",
     "static/media/shuttle_bus_4.jpeg": "/hj_gh/static/media/shuttle_bus_4.56bda35480c234d55032.jpeg",
-    "static/media/door.mov": "/hj_gh/static/media/door.52c4e8b70d9f57897096.mov",
+    "static/media/door.mp4": "/hj_gh/static/media/door.cf1c18128f5ff5b22be5.mp4",
     "static/media/photo07.jpeg": "/hj_gh/static/media/photo07.08996075c4cf63798e57.jpeg",
     "static/media/photo11.jpeg": "/hj_gh/static/media/photo11.08996075c4cf63798e57.jpeg",
     "static/media/photo12.jpeg": "/hj_gh/static/media/photo12.08996075c4cf63798e57.jpeg",
@@ -33,12 +33,12 @@
     "static/media/kakao-map.webp": "/hj_gh/static/media/kakao-map.ad41212b2a406aa05a8e.webp",
     "static/media/naver-map.webp": "/hj_gh/static/media/naver-map.858d9f7e87f64727a074.webp",
     "index.html": "/hj_gh/index.html",
-    "main.27f9427e.css.map": "/hj_gh/static/css/main.27f9427e.css.map",
-    "main.0eb40fef.js.map": "/hj_gh/static/js/main.0eb40fef.js.map",
+    "main.11a571f2.css.map": "/hj_gh/static/css/main.11a571f2.css.map",
+    "main.51e8e47c.js.map": "/hj_gh/static/js/main.51e8e47c.js.map",
     "453.048226df.chunk.js.map": "/hj_gh/static/js/453.048226df.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.27f9427e.css",
-    "static/js/main.0eb40fef.js"
+    "static/css/main.11a571f2.css",
+    "static/js/main.51e8e47c.js"
   ]
 }
