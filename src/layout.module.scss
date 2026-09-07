@@ -1,0 +1,27 @@
+.wrap {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  padding-top: var(--menu-height);
+
+  .layout {
+    display: flex;
+    justify-content: space-between;
+    width: var(--view-width);
+    background-color: var(--background-color1);
+    min-height: 100vh;
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-x: hidden;
+      background-color: var(--background-color1);
+    }
+  }
+}

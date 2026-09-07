@@ -1,0 +1,183 @@
+@keyframes bottomToTop {
+  from {
+    top: calc(var(--DEVICE-HEIGHT) * -1);
+  }
+  to {
+    top: 0;
+  }
+}
+@keyframes topToBottom {
+  from {
+    bottom: calc(var(--DEVICE-HEIGHT) * -1);
+  }
+  to {
+    bottom: 0;
+  }
+}
+@keyframes rightToLeft {
+  from {
+    left: var(--view-width);
+  }
+  to {
+    left: 0;
+  }
+}
+@keyframes leftToRight {
+  from {
+    right: var(--view-width);
+  }
+  to {
+    right: 0;
+  }
+}
+@keyframes bottomToTopClosing {
+  from {
+    top: 0;
+  }
+  to {
+    top: calc(var(--DEVICE-HEIGHT) * -1);
+  }
+}
+@keyframes topToBottomClosing {
+  from {
+    bottom: 0;
+  }
+  to {
+    bottom: calc(var(--DEVICE-HEIGHT) * -1);
+  }
+}
+@keyframes rightToLeftClosing {
+  from {
+    left: 0;
+  }
+  to {
+    left: var(--view-width);
+  }
+}
+@keyframes leftToRightClosing {
+  from {
+    right: 0;
+  }
+  to {
+    right: var(--view-width);
+  }
+}
+@keyframes popCenter {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.slideModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100000;
+  width: var(--view-width);
+  height: var(--DEVICE-HEIGHT);
+  margin: auto;
+
+  .wrap {
+    width: var(--view-width);
+    height: 100%;
+    position: relative;
+
+    &.isClosing {
+      &.way-bottom {
+        animation: bottomToTopClosing 0.3s;
+      }
+      &.way-top {
+        animation: topToBottomClosing 0.3s;
+      }
+      &.way-right {
+        animation: rightToLeftClosing 0.3s;
+      }
+      &.way-left {
+        animation: leftToRightClosing 0.3s;
+      }
+    }
+    &:not(.isClosing) {
+      &.way-bottom {
+        animation: bottomToTop 0.5s;
+      }
+      &.way-top {
+        animation: topToBottom 0.5s;
+      }
+      &.way-right {
+        animation: rightToLeft 0.5s;
+      }
+      &.way-left {
+        animation: leftToRight 0.5s;
+      }
+      &.way-center {
+        animation: popCenter 0.3s ease-out;
+        transform-origin: center center;
+      }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+
+      .background {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: var(--view-width);
+        height: var(--DEVICE-HEIGHT);
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        position: absolute;
+
+        &.isFull {
+          width: var(--view-width);
+          height: var(--DEVICE-HEIGHT);
+        }
+        &.isCenter {
+          width: var(--view-width);
+        }
+
+        .indicator {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px 0;
+          position: absolute;
+          top: 0;
+
+          span {
+            width: 36px;
+            height: 5px;
+            background-color: #dbdbdb;
+            max-width: 100%;
+            border-radius: 5px;
+          }
+        }
+        .tempIndicator {
+          height: 15px;
+        }
+      }
+    }
+  }
+}

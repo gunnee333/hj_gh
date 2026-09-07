@@ -1,0 +1,98 @@
+:root {
+  --page-width: 500px;
+  --menu-height: 40px;
+
+  --color-gray1: #222222;
+  --color-gray2: #333333;
+  --color-gray3: #4f4f4f;
+  --color-gray4: #828282;
+  --color-gray5: #bdbdbd;
+  --color-gray6: #e0e0e0;
+  --color-gray7: #f2f2f2;
+  --color-gray8: #f9f9f9;
+
+  --color-bagie: #e8dfd5;
+  --color-bagie2: #eee7e1;
+  --color-bagie3: #d4c9bf;
+  --color-bagie4: #cdb8a3;
+  --color-ivory: #f8f6f2;
+  --color-green: #a8b7a1;
+  --color-green2: #eaede9;
+  --color-pink: #f6edee;
+  --color-pink1: #ffe5ec;
+  --color-pink2: #fdfafa;
+
+  --document-background-color: var(--color-gray7);
+  --background-color1: var(--color-green2);
+  --background-color2: var(--color-ivory);
+  --title-color: #462d2d;
+
+  --view-width: min(100vw, var(--page-width));
+  --DEVICE-HEIGHT: 100svh;
+  --font-scale: 1;
+  font-size: calc(16px * var(--font-scale));
+
+  --side-padding: 20px;
+  --vertical-padding: 40px;
+  @media (max-width: 540px) {
+    --side-padding: 12px;
+  }
+}
+
+html,
+body {
+  font-family:
+    "Seoul Hangang",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: var(--document-background-color);
+  max-width: 100%;
+  touch-action: manipulation;
+}
+
+/* =========================
+   Disable zoom & drag/select
+   ========================= */
+
+/* PC/모바일 공통: 텍스트 선택(드래그) 방지 */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* iOS: 길게 눌러 복사/돋보기/콜아웃 방지 */
+body {
+  -webkit-touch-callout: none;
+}
+
+/* 이미지 드래그 방지(PC에서 이미지 끌어오기 방지) */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* 더블탭 확대 억제(일부 모바일 브라우저) */
+* {
+  touch-action: manipulation;
+}
+
+/* 입력 요소는 선택/커서 가능해야 함 */
+input,
+textarea {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  touch-action: auto !important;
+}

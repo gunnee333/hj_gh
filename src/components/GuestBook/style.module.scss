@@ -1,0 +1,166 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--vertical-padding) var(--side-padding) 100px;
+  scroll-margin: var(--vertical-padding) 0;
+  gap: 10px;
+  background-color: var(--background-color2);
+
+  .title {
+    color: var(--title-color);
+    font-size: 1.2rem;
+  }
+
+  .commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 5px;
+    position: relative;
+    margin-top: 15px;
+    background-color: var(--color-bagie2);
+    font-family: "NEXON_Gothic";
+
+    .commentConatiner {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 5px;
+      border: 1px dashed white;
+
+      .inputContainer {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        gap: 8px;
+
+        .input {
+          flex: 1;
+          border: none;
+          width: 100%;
+          padding: 8px 12px;
+          font-size: 0.8rem;
+          background-color: white;
+          border: 1px solid var(--color-gray7);
+          font-family: "NEXON_Gothic";
+        }
+
+        .textarea {
+          flex: 1;
+          border: none;
+          width: 100%;
+          font-size: 0.8rem;
+          line-height: 190%;
+          height: 100px;
+          resize: none;
+          overflow: hidden;
+          background-color: white;
+          border: 1px solid var(--color-gray7);
+          padding: 4px 10px;
+          font-family: "NEXON_Gothic";
+        }
+      }
+
+      .errorText {
+        color: #fd6666;
+        font-size: 0.8rem;
+      }
+
+      .btnContainer {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 8px;
+
+        button {
+          font-family: "NEXON_Gothic";
+          appearance: none;
+          border: 0;
+          cursor: pointer;
+          border-radius: 4px;
+          padding: 10px 12px;
+          font-weight: 800;
+          font-size: 0.8rem;
+          letter-spacing: -0.2px;
+          transition:
+            transform 120ms ease,
+            filter 120ms ease,
+            opacity 120ms ease;
+          background-color: var(--color-ivory);
+        }
+      }
+    }
+  }
+
+  .listContainer {
+    margin-top: 14px;
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    font-family: "NEXON_Gothic";
+
+    .itemContainer {
+      padding: 5px;
+      background-color: var(--color-bagie2);
+
+      .item {
+        padding: 8px;
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border: 1px dashed white;
+
+        .titleRow {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .name {
+            font-weight: 800;
+          }
+
+          .date {
+            font-size: 0.6rem;
+            color: rgba(26, 26, 34, 0.45);
+            letter-spacing: -0.1px;
+          }
+        }
+
+        .contentContainer {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: space-between;
+
+          .content {
+            margin-top: 6px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: var(--color-gray1);
+          }
+
+          .delBtn {
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+              border: 1px solid var(--color-bagie4);
+              background: var(--color-ivory);
+              border-radius: 2px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+              width: 1.5rem;
+              height: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

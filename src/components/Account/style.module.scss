@@ -1,0 +1,130 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--vertical-padding) var(--side-padding);
+  scroll-margin: var(--vertical-padding) 0;
+  gap: 10px;
+  border-bottom: 6px dashed var(--background-color2);
+
+  .title {
+    color: var(--title-color);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .toggle {
+    background-color: white;
+    width: 100%;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    font-family: "NEXON_Gothic";
+
+    &.active {
+      .toggleTitle {
+        .arrow {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+
+    .toggleTitle {
+      display: flex;
+      align-items: center;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: var(--color-green2);
+      padding: 10px 15px;
+      cursor: pointer;
+      position: relative;
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 20px;
+          transition: transform 0.3s;
+        }
+      }
+    }
+    .toggleDiv {
+      max-height: 600px;
+      overflow: hidden;
+      transition: max-height 0.5s;
+    }
+    &:not(.active) {
+      .toggleDiv {
+        max-height: 0px;
+      }
+    }
+
+    .toggleItem {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 15px;
+      gap: 10px;
+      white-space: nowrap;
+
+      &:not(:last-child) {
+        border-bottom: 1px dashed var(--color-green2);
+      }
+
+      .nameRow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .bankRow {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        .bank {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 12px;
+
+          .copyBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            height: 20px;
+            padding: 0 2px;
+            border: 1px solid var(--color-gray5);
+            font-size: 0.6rem;
+            color: var(--color-gray3);
+            border-radius: 2px;
+            cursor: pointer;
+          }
+        }
+
+        .kakaoBtn {
+          border: 1px solid #fee500;
+          background-color: #fee500;
+          height: 20px;
+          padding: 0 4px;
+          border-radius: 2px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
