@@ -42,8 +42,16 @@
     opacity: 0;
   }
 
-  video {
+  .video {
+    width: auto;
     height: 100vh;
+    min-width: var(--page-width);
+    min-height: 100vh;
+    visibility: hidden;
+
+    &.started {
+      visibility: visible;
+    }
   }
 
   .light {

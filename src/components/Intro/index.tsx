@@ -3,6 +3,7 @@ import { Video } from '../../assets';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Component({ onComplete }: { onComplete?: () => void }) {
+  const [start, setStart] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const ref = useRef<HTMLVideoElement>(null);
@@ -43,6 +44,7 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
         muted
         playsInline
         onLoadStart={() => {
+          setStart(true);
           setTimeout(() => {
             onComplete?.();
           }, 1000);
@@ -50,6 +52,7 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
         onEnded={() => {
           setIsFading(true);
         }}
+        className={[styles.video, start ? styles.started : undefined].join(' ')}
       />
       <div className={styles.light}></div>
     </div>
