@@ -1,6 +1,6 @@
 export default function Svg({
-  width = 12,
-  stroke = 'black'
+  width = 14,
+  stroke = '#000000'
 }: { width?: number; stroke?: string } = {}) {
   return (
     <svg
@@ -10,22 +10,28 @@ export default function Svg({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clipPath="url(#clip0_1545_11328)">
+      <g clipPath="url(#clip0_1545_11976)">
         <path
-          d="M5.92 11.34C8.91338 11.34 11.34 8.91338 11.34 5.92C11.34 2.92662 8.91338 0.5 5.92 0.5C2.92662 0.5 0.5 2.92662 0.5 5.92C0.5 8.91338 2.92662 11.34 5.92 11.34Z"
+          d="M12.5 0.5H1.5C0.947715 0.5 0.5 0.947715 0.5 1.5V12.5C0.5 13.0523 0.947715 13.5 1.5 13.5H12.5C13.0523 13.5 13.5 13.0523 13.5 12.5V1.5C13.5 0.947715 13.0523 0.5 12.5 0.5Z"
           stroke={stroke}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          d="M13.5 13.5L9.75 9.75"
+          d="M0.5 3.5H13.5"
+          stroke={stroke}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M4 9L6 10.5L9.5 6.5"
           stroke={stroke}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       </g>
       <defs>
-        <clipPath id="clip0_1545_11328">
+        <clipPath id="clip0_1545_11976">
           <rect width="14" height="14" fill="white" />
         </clipPath>
       </defs>

@@ -21,6 +21,7 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
     setTimeout(() => changeSpeed(2), 2000);
     setTimeout(() => changeSpeed(2.5), 2500);
     setTimeout(() => changeSpeed(3), 3000);
+    setTimeout(() => changeSpeed(10), 3200);
   }, []);
 
   if (hidden) {

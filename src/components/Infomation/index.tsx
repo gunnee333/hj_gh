@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./style.module.scss";
-import { CONSTANT } from "../../util";
+import React from 'react';
+import styles from './style.module.scss';
+import { CONSTANT } from '../../util';
 
 export default function Component() {
   return (

@@ -1,15 +1,45 @@
-export default function Svg({ width = 24, fill = "#4f4f4f" }: { width?: number; fill?: string } = {}) {
+export default function Svg({
+  width = 14,
+  stroke = '#4f4f4f'
+}: { width?: number; stroke?: string } = {}) {
   return (
-    <svg width={width} height={width} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fillRule="evenodd" clipRule="evenodd" d="M7.89941 15.5365H14.8427V17.0365H7.89941V15.5365Z" fill={fill} />
-      <path fillRule="evenodd" clipRule="evenodd" d="M7.89844 11.754H12.7813V13.254H7.89844V11.754Z" fill={fill} />
+    <svg
+      width={width}
+      height={width}
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M3.5752 2H14.8875L20.4245 7.76648V22H3.5752V2ZM5.0752 3.5V20.5H18.9245V8.37004L14.2483 3.5H5.0752Z"
-        fill={fill}
+        d="M9 2.5H3C2.44772 2.5 2 2.94772 2 3.5V12.5C2 13.0523 2.44772 13.5 3 13.5H9C9.55228 13.5 10 13.0523 10 12.5V3.5C10 2.94772 9.55228 2.5 9 2.5Z"
+        stroke={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <path fillRule="evenodd" clipRule="evenodd" d="M14.8418 2.55469V7.90011H19.9489V9.40011H13.3418V2.55469H14.8418Z" fill={fill} />
+      <path
+        d="M4 5H8"
+        stroke={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 7.5H8"
+        stroke={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 10H6"
+        stroke={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4.5 0.5H11C11.2652 0.5 11.5196 0.605357 11.7071 0.792893C11.8946 0.98043 12 1.23478 12 1.5V11"
+        stroke={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

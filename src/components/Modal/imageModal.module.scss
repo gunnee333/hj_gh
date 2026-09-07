@@ -10,7 +10,6 @@
 
   .modal {
     width: 100%;
-    max-width: var(--page-width);
     overflow: hidden;
     max-height: 100svh;
 
@@ -65,13 +64,12 @@
           display: flex;
           align-items: center;
           justify-items: center;
-          height: -webkit-fill-available;
+          height: 100svh;
 
           img {
             width: 100%;
-            max-width: 100vw;
+            max-width: var(--page-width);
             height: auto;
-            max-height: 100svh;
             object-fit: contain;
             display: block;
           }

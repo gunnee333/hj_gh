@@ -194,7 +194,7 @@ export default function Component() {
         toWay="none"
       >
         <div className={styles.close} onClick={() => setIsModal(false)}>
-          <Svgs.Close fill="white" />
+          <Svgs.Close fill={'black'} />
         </div>
         <div className={styles.modalContainer}>
           <div className={styles.division} />

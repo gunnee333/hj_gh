@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/hj_gh/static/css/main.66f8b529.css",
-    "main.js": "/hj_gh/static/js/main.6c914bd6.js",
+    "main.css": "/hj_gh/static/css/main.5eb01c9d.css",
+    "main.js": "/hj_gh/static/js/main.e365e95c.js",
     "static/js/453.048226df.chunk.js": "/hj_gh/static/js/453.048226df.chunk.js",
     "static/media/shuttle_bus_3.jpeg": "/hj_gh/static/media/shuttle_bus_3.181de759a58c8f85cc23.jpeg",
     "static/media/shuttle_bus_1.jpeg": "/hj_gh/static/media/shuttle_bus_1.ca551487d56f7575bba9.jpeg",
@@ -33,12 +33,12 @@
     "static/media/kakao-map.webp": "/hj_gh/static/media/kakao-map.ad41212b2a406aa05a8e.webp",
     "static/media/naver-map.webp": "/hj_gh/static/media/naver-map.858d9f7e87f64727a074.webp",
     "index.html": "/hj_gh/index.html",
-    "main.66f8b529.css.map": "/hj_gh/static/css/main.66f8b529.css.map",
-    "main.6c914bd6.js.map": "/hj_gh/static/js/main.6c914bd6.js.map",
+    "main.5eb01c9d.css.map": "/hj_gh/static/css/main.5eb01c9d.css.map",
+    "main.e365e95c.js.map": "/hj_gh/static/js/main.e365e95c.js.map",
     "453.048226df.chunk.js.map": "/hj_gh/static/js/453.048226df.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.66f8b529.css",
-    "static/js/main.6c914bd6.js"
+    "static/css/main.5eb01c9d.css",
+    "static/js/main.e365e95c.js"
   ]
 }
