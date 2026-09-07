@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Seoul Hangang";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url("./font/SeoulHangang-Medium.woff2") format("woff2"),
+    url("./font/SeoulHangang-Medium.woff") format("woff"),
+    url("./font/SeoulHangang-Medium.ttf") format("truetype");
+}
+
+/***************************************************************/
+
+@font-face {
+  font-family: "NEXON_Gothic";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("./font/NEXON_Lv1_Gothic_Low_OTF_Light.otf") format("otf");
+}
