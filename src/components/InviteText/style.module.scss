@@ -281,7 +281,7 @@
           .countContainer {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 8px;
             min-width: min(150px, 100%);
             flex: 1;
 
@@ -304,7 +304,8 @@
 
                   button {
                     border: 1px solid var(--color-bagie2);
-                    width: 20px;
+                    width: 24px;
+                    height: 24px;
                     border-radius: 4px;
                     display: flex;
                     align-items: center;

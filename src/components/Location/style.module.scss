@@ -16,7 +16,7 @@
   .desc {
     text-align: center;
     line-height: 180%;
-    font-family: "NEXON_Gothic";
+    font-family: 'NEXON_Gothic';
     word-break: keep-all;
   }
 
@@ -26,7 +26,7 @@
     gap: 8px;
     padding: 10px 0;
     width: 100%;
-    font-family: "NEXON_Gothic";
+    font-family: 'NEXON_Gothic';
 
     > div {
       width: 100% !important;
@@ -128,7 +128,7 @@
 
       .itemContent {
         font-size: 0.8rem;
-        font-family: "NEXON_Gothic";
+        font-family: 'NEXON_Gothic';
         line-height: 150%;
         padding: 0 12px;
 
@@ -195,7 +195,7 @@
 
 .modal {
   display: flex;
-  font-family: "NEXON_Gothic";
+  font-family: 'NEXON_Gothic';
 
   .modalWrap {
     position: relative;
@@ -237,7 +237,7 @@
         .swiper {
           :global(.swiper-wrapper) {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
           }
 
           > div {
@@ -252,7 +252,7 @@
             justify-items: flex-start;
             font-size: 1rem;
             gap: 12px;
-            height: -webkit-fill-available;
+            height: max-content;
             white-space: pre-wrap;
             line-height: 160%;
 

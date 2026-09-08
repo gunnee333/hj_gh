@@ -1,5 +1,5 @@
 import styles from './style.module.scss';
-import { Video } from '../../assets';
+import { Images, Video } from '../../assets';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Component({ onComplete }: { onComplete?: () => void }) {
@@ -15,14 +15,16 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
   };
 
   useEffect(() => {
-    setTimeout(() => changeSpeed(1.2), 500);
-    setTimeout(() => changeSpeed(1.4), 1000);
-    setTimeout(() => changeSpeed(1.7), 1600);
-    setTimeout(() => changeSpeed(2), 2000);
-    setTimeout(() => changeSpeed(2.5), 2500);
-    setTimeout(() => changeSpeed(3), 3000);
-    setTimeout(() => changeSpeed(10), 3200);
-  }, []);
+    if (start) {
+      setTimeout(() => changeSpeed(1.2), 500);
+      setTimeout(() => changeSpeed(1.4), 1000);
+      setTimeout(() => changeSpeed(1.7), 1600);
+      setTimeout(() => changeSpeed(2), 2000);
+      setTimeout(() => changeSpeed(2.5), 2500);
+      setTimeout(() => changeSpeed(3), 3000);
+      setTimeout(() => changeSpeed(10), 3200);
+    }
+  }, [start]);
 
   if (hidden) {
     return null;
@@ -40,7 +42,6 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
     >
       <video
         ref={ref}
-        src={Video.door}
         autoPlay
         muted
         playsInline
@@ -53,8 +54,11 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
         onEnded={() => {
           setIsFading(true);
         }}
-        className={[styles.video, start ? styles.started : undefined].join(' ')}
-      />
+        poster={Images.introImg}
+        className={styles.video}
+      >
+        <source src={Video.door} type="video/mp4" />
+      </video>
       <div className={styles.light}></div>
     </div>
   );

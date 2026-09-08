@@ -292,7 +292,7 @@ export function AttendeeModal({
               </div>
             </div>
           </div>
-          <div className={styles.row}>
+          <div className={[styles.row, styles.hide].join(' ')}>
             <div className={styles.title}>
               <span>전달사항</span>
             </div>
