@@ -57,6 +57,16 @@ export default function Modal({
   const draggingRef = useRef(false);
   const dragOffsetRef = useRef(0);
 
+  const openModal = () => {
+    setIsVisible(true);
+    // 브라우저 히스토리 추가
+    window.history.pushState({ modal: true }, '', window.location.href);
+  };
+
+  const closeModal = () => {
+    setIsVisible(false);
+  };
+
   function onClose() {
     startYRef.current = 0;
     currentYRef.current = 0;
@@ -108,7 +118,7 @@ export default function Modal({
   useEffect(() => {
     if (visible) {
       setIsClosing(false);
-      setIsVisible(true);
+      openModal();
     } else {
       setIsClosing(true);
     }
@@ -117,10 +127,22 @@ export default function Modal({
   useEffect(() => {
     if (isClosing) {
       setTimeout(() => {
-        setIsVisible(false);
+        closeModal();
       }, 100);
     }
   }, [isClosing]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      if (isVisible) {
+        closeModal();
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [isVisible]);
 
   if (!isVisible) {
     return <></>;
