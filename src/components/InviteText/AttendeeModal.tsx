@@ -25,7 +25,7 @@ const initData: GuestCount = {
   infantCount: 0,
   name: '',
   relation: '',
-  message: undefined
+  message: ''
 };
 
 const DB_ID = process.env.REACT_APP_FIREBASE_ATTENDEE_LIST_DB_ID!;
