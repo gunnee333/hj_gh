@@ -8,12 +8,18 @@ import 'swiper/css';
 import 'swiper/css/zoom';
 
 type Props = {
+  visible: boolean;
   photos: string[];
-  index: number;
+  index?: number;
   onClose: () => void;
 };
 
-export function ImageModal({ photos, index, onClose }: Props) {
+export function ImageModal({
+  visible = false,
+  photos,
+  index = 0,
+  onClose
+}: Props) {
   const [currentIndex, setCurrentIndex] = useState(index);
   const swiperRef = useRef<SwiperCore | null>(null);
 
@@ -46,6 +52,26 @@ export function ImageModal({ photos, index, onClose }: Props) {
   useEffect(() => {
     setCurrentIndex(index);
   }, [index]);
+
+  useEffect(() => {
+    if (visible) {
+      window.history.pushState({ modal: true }, '', window.location.href);
+    }
+
+    const handlePopState = () => {
+      if (visible) {
+        onClose();
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [visible]);
+
+  if (!visible) {
+    return <></>;
+  }
 
   return (
     <div

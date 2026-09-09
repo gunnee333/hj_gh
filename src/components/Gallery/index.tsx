@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Wedding } from "../../assets";
-import styles from "./style.module.scss";
-import { CONSTANT } from "../../util";
-import { ImageModal } from "../Modal/ImageModal";
+import { useState } from 'react';
+import { Wedding } from '../../assets';
+import styles from './style.module.scss';
+import { CONSTANT } from '../../util';
+import { ImageModal } from '../Modal/ImageModal';
 
 const images: string[] = [
   Wedding.photo1,
@@ -25,11 +25,11 @@ const images: string[] = [
   Wedding.photo15,
   Wedding.photo18,
   Wedding.photo19,
-  Wedding.photo20,
+  Wedding.photo20
 ];
 
 export default function Component() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number>();
 
   return (
     <>
@@ -37,13 +37,22 @@ export default function Component() {
         <div className={styles.title}>사진첩</div>
         <div className={styles.listContainer}>
           {images.map((item, index) => (
-            <div key={index} className={styles.photoItem} onClick={() => setOpenIndex(index)}>
+            <div
+              key={index}
+              className={styles.photoItem}
+              onClick={() => setOpenIndex(index)}
+            >
               <img src={item} alt={`wedding_${index}`} />
             </div>
           ))}
         </div>
       </div>
-      {openIndex !== null && <ImageModal photos={images} index={openIndex} onClose={() => setOpenIndex(null)} />}
+      <ImageModal
+        visible={openIndex !== undefined}
+        photos={images}
+        index={openIndex}
+        onClose={() => setOpenIndex(undefined)}
+      />
     </>
   );
 }
