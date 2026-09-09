@@ -1,3 +1,5 @@
+$header-height: 50px;
+
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -11,7 +13,7 @@
   .modal {
     width: 100%;
     overflow: hidden;
-    max-height: 100svh;
+    height: 100vh;
 
     .modalTop {
       z-index: 5001;
@@ -20,9 +22,10 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 10px;
-      height: 40px;
+      height: $header-height;
       background-color: black;
       position: relative;
+      font-size: 1.2rem;
 
       .modalIndex {
         color: white;
@@ -41,6 +44,9 @@
 
     .modalBody {
       width: 100%;
+      height: calc(100vh - $header-height);
+      height: calc(100svh - $header-height);
+      height: calc(100dvh - $header-height);
       display: flex;
       align-items: center;
       justify-content: center;
