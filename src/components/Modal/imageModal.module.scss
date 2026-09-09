@@ -14,30 +14,26 @@
     max-height: 100svh;
 
     .modalTop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
       z-index: 5001;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 10px;
+      padding: 0 10px;
+      height: 40px;
+      background-color: black;
+      position: relative;
 
       .modalIndex {
-        position: absolute;
-        top: 0;
-        left: 0;
         color: white;
-        padding: 15px 20px;
       }
 
       .closeBtn {
         position: absolute;
-        top: 0;
+        padding: 10px 10px;
+        top: 50%;
         right: 0;
-        padding: 10px 20px;
+        transform: translateY(-47%);
         border: none;
         background-color: unset;
       }

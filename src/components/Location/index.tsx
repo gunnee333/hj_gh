@@ -121,8 +121,11 @@ export default function Component() {
               </div>
               <div className={styles.row}>
                 - 셔틀버스 : 4번출구(뒷쪽) 셔틀버스 운행{' '}
-                <button onClick={() => setIsModal(true)}>
-                  <Svgs.Search />
+                <button
+                  onClick={() => setIsModal(true)}
+                  className={styles.infoBtn}
+                >
+                  안내 <Svgs.Search />
                 </button>
               </div>
               <div className={styles.row}>
