@@ -42,23 +42,34 @@
 html,
 body {
   font-family:
-    "Seoul Hangang",
+    'Seoul Hangang',
     -apple-system,
     BlinkMacSystemFont,
-    "Segoe UI",
-    "Roboto",
-    "Oxygen",
-    "Ubuntu",
-    "Cantarell",
-    "Fira Sans",
-    "Droid Sans",
-    "Helvetica Neue",
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
     sans-serif;
   padding: 0;
   margin: 0;
   background-color: var(--document-background-color);
   max-width: 100%;
+  height: 100dvh;
+  height: 100svh;
+  height: 100vh;
   touch-action: manipulation;
+  overflow: hidden;
+}
+
+#root {
+  height: 100dvh;
+  height: 100svh;
+  height: 100vh;
+  overflow: auto;
 }
 
 /* =========================

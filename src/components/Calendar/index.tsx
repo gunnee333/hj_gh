@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
-import { Svgs } from "../../assets";
-import styles from "./style.module.scss";
-import moment from "moment";
-import { CONSTANT } from "../../util";
+import { useEffect, useState } from 'react';
+import { Svgs } from '../../assets';
+import styles from './style.module.scss';
+import moment from 'moment';
+import { CONSTANT } from '../../util';
 
 function diffParts(nowMs: number) {
   const targetMs = new Date(CONSTANT.date.dateISO).getTime();
 
-  const diffDays = moment(targetMs).startOf("days").diff(moment(nowMs).startOf("days"), "days");
+  const diffDays = moment(targetMs)
+    .startOf('days')
+    .diff(moment(nowMs).startOf('days'), 'days');
   const diff = targetMs - nowMs;
   const abs = Math.abs(diff);
 
@@ -35,16 +37,19 @@ export default function Component() {
     <>
       <div className={styles.container} id={CONSTANT.ELEMENT_ID.CALENDAR}>
         <div className={styles.title}>달력</div>
-        <div className={styles.date}>{moment(CONSTANT.date.dateISO).format("YYYY. MM. DD. (ddd) HH시")}</div>
+        <div className={styles.date}>
+          {moment(CONSTANT.date.dateISO).format('YYYY. MM. DD. (ddd) HH시')}
+        </div>
         <div className={styles.desc}>
           {d.days === 0 ? (
             <div className={styles.text}>
-              오늘은 {CONSTANT.groom.name.slice(1, 3)} <span>♥</span> {CONSTANT.bride.name.slice(1, 3)}의 결혼식입니다.
+              오늘은 {CONSTANT.groom.name.slice(1, 3)} <span>♥</span>{' '}
+              {CONSTANT.bride.name.slice(1, 3)}의 결혼식입니다.
             </div>
           ) : (
             <>
               <div className={styles.text}>
-                D {isBefore ? "-" : "+"} <span>{Math.abs(d.diffDays)}</span>
+                D {isBefore ? '-' : '+'} <span>{Math.abs(d.diffDays)}</span>
               </div>
               {d.diff !== 0 && (
                 <div className={styles.timer}>
@@ -52,14 +57,16 @@ export default function Component() {
                   <span>{String(d.hours)}시간</span>
                   <span>{String(d.mins)}분</span>
                   <span>{String(d.secs)}초</span>
-                  <div>{isBefore ? "남았습니다." : "지났습니다."}</div>
+                  <div>{isBefore ? '남았습니다.' : '지났습니다.'}</div>
                 </div>
               )}
             </>
           )}
         </div>
         <div className={styles.tableContainer}>
-          <div className={styles.date}>{moment(CONSTANT.date.dateISO).format("YYYY. MM.")}</div>
+          <div className={styles.date}>
+            {moment(CONSTANT.date.dateISO).format('YYYY. MM.')}
+          </div>
 
           <table>
             <tbody>
@@ -79,7 +86,7 @@ export default function Component() {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>
+                <td className={styles.red}>
                   <div className={styles.heart}>
                     <Svgs.Heart width={40} fill="#a8b7a1" />
                   </div>
@@ -88,9 +95,9 @@ export default function Component() {
               </tr>
               <tr>
                 <td>2</td>
-                <td>3</td>
+                <td className={styles.red}>3</td>
                 <td>4</td>
-                <td>5</td>
+                <td className={styles.red}>5</td>
                 <td>6</td>
                 <td>7</td>
                 <td>8</td>
@@ -100,7 +107,7 @@ export default function Component() {
                 <td>10</td>
                 <td>11</td>
                 <td>12</td>
-                <td>13</td>
+                <td className={styles.red}>13</td>
                 <td>14</td>
                 <td>15</td>
               </tr>

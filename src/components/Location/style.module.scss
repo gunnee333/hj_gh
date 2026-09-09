@@ -129,16 +129,15 @@
       .itemContent {
         font-size: 0.8rem;
         font-family: 'NEXON_Gothic';
-        line-height: 150%;
         padding: 0 12px;
+        line-height: 160%;
 
         .row {
           display: flex;
           flex-direction: row;
           align-items: center;
           gap: 8px;
-          height: 24px;
-          line-height: 140%;
+          padding: 2px 0;
 
           .infoBtn {
             background-color: var(--color-bagie2);
@@ -164,7 +163,6 @@
           .row {
             span {
               font-weight: 600;
-              line-height: 100%;
             }
 
             &.green span {
