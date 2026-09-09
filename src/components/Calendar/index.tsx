@@ -86,7 +86,7 @@ export default function Component() {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>
+                <td className={styles.red}>
                   <div className={styles.heart}>
                     <Svgs.Heart width={36} />
                   </div>
