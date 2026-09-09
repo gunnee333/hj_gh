@@ -51,6 +51,9 @@ export function ImageModal({
 
   useEffect(() => {
     setCurrentIndex(index);
+    if (index !== undefined) {
+      swiperRef.current?.slideTo(index, 0);
+    }
   }, [index]);
 
   useEffect(() => {
@@ -69,13 +72,11 @@ export function ImageModal({
     };
   }, [visible]);
 
-  if (!visible) {
-    return <></>;
-  }
-
   return (
     <div
-      className={styles.modalOverlay}
+      className={[styles.modalOverlay, visible ? styles.show : undefined].join(
+        ' '
+      )}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
