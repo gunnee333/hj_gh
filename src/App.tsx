@@ -1,12 +1,25 @@
-import { useState } from "react";
-import { Header, Account, Calendar, Gallery, GuestBook, InviteText, Location, Menu, Intro, Infomation } from "./components";
-import styles from "./layout.module.scss";
+import { useState } from 'react';
+import {
+  Header,
+  Account,
+  Calendar,
+  Gallery,
+  GuestBook,
+  InviteText,
+  Location,
+  Menu,
+  Intro,
+  Infomation,
+  AniOverlay
+} from './components';
+import styles from './layout.module.scss';
 
 export default function App() {
   const [intro, setIntro] = useState(true);
 
   return (
     <>
+      <AniOverlay count={80} />
       <Intro onComplete={() => setIntro(false)} />
       {!intro && (
         <div className={styles.wrap}>

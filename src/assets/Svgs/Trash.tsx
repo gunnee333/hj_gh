@@ -1,26 +1,52 @@
-export default function Svg({ width = 24 }: { width?: number } = {}) {
+export default function Svg({
+  width = 24,
+  stroke = '#cdb8a3'
+}: { width?: number; stroke?: string } = {}) {
   return (
     <svg
-      fill="#000000"
-      version="1.1"
-      id="Capa_1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
       width={width}
       height={width}
-      viewBox="0 0 64.125 64.125"
-      xmlSpace="preserve"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <g>
+      <g clip-path="url(#clip0_1545_11122)">
         <path
-          d="M56.228,9.125h-13.04V4.836C43.188,2.17,41.019,0,38.353,0h-12.58c-2.666,0-4.835,2.17-4.835,4.836v4.289H7.897
-		c-2.666,0-4.835,2.17-4.835,4.836v6.289c0,1.105,0.896,2,2,2h5.25v37.041c0,2.666,2.169,4.834,4.835,4.834h34.58
-		c2.666,0,4.835-2.168,4.835-4.834V22.25h4.5c1.104,0,2-0.895,2-2v-6.289C61.062,11.295,58.894,9.125,56.228,9.125z M24.938,4.836
-		C24.938,4.375,25.312,4,25.772,4h12.58c0.46,0,0.835,0.375,0.835,0.836v4.289h-14.25V4.836z M50.562,59.291
-		c0,0.461-0.375,0.834-0.835,0.834h-34.58c-0.46,0-0.835-0.373-0.835-0.834V22.25h36.25V59.291z M57.062,18.25h-4.5h-40.25h-5.25
-		v-4.289c0-0.461,0.375-0.836,0.835-0.836h15.04h18.25h15.04c0.46,0,0.835,0.375,0.835,0.836V18.25z"
+          d="M1 3.5H13"
+          stroke={stroke}
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M2.5 3.5H11.5V12.5C11.5 12.7652 11.3946 13.0196 11.2071 13.2071C11.0196 13.3946 10.7652 13.5 10.5 13.5H3.5C3.23478 13.5 2.98043 13.3946 2.79289 13.2071C2.60536 13.0196 2.5 12.7652 2.5 12.5V3.5Z"
+          stroke={stroke}
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M4.5 3.5V3C4.5 2.33696 4.76339 1.70107 5.23223 1.23223C5.70107 0.763392 6.33696 0.5 7 0.5C7.66304 0.5 8.29893 0.763392 8.76777 1.23223C9.23661 1.70107 9.5 2.33696 9.5 3V3.5"
+          stroke={stroke}
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5.5 5.5V11"
+          stroke={stroke}
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.5 5.5V11"
+          stroke={stroke}
+          stroke-linecap="round"
+          stroke-linejoin="round"
         />
       </g>
+      <defs>
+        <clipPath id="clip0_1545_11122">
+          <rect width="14" height="14" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
   );
 }

@@ -1,5 +1,5 @@
 export default function Svg({
-  width = 12,
+  width = 10,
   stroke = 'black'
 }: { width?: number; stroke?: string } = {}) {
   return (

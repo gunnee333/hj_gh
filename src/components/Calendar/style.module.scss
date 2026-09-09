@@ -1,3 +1,15 @@
+@keyframes heartMove {
+  0% {
+    width: 36px;
+  }
+  50% {
+    width: 32px;
+  }
+  100% {
+    width: 36px;
+  }
+}
+
 .container {
   border-bottom: 6px dashed var(--background-color2);
   display: flex;
@@ -90,7 +102,11 @@
         }
 
         &.activeTr {
-          height: 40px;
+          height: 34px;
+
+          svg {
+            animation: heartMove 0.8s linear 0s infinite;
+          }
         }
         td {
           padding: 4px 0;
@@ -103,7 +119,7 @@
           }
           .active {
             position: absolute;
-            top: 0;
+            top: 2px;
             left: 0;
             right: 0;
             bottom: 0;
@@ -121,15 +137,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            top: 0;
+            top: 1px;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 1;
-
-            img {
-              width: 36px;
-            }
           }
         }
       }

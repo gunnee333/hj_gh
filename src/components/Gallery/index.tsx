@@ -7,10 +7,9 @@ import { ImageModal } from '../Modal/ImageModal';
 const images: string[] = [
   Wedding.photo1,
   Wedding.photo2,
-  Wedding.photo21,
   Wedding.photo3,
   Wedding.photo4,
-  Wedding.photo13,
+  Wedding.photo5,
   Wedding.photo6,
   Wedding.photo7,
   Wedding.photo8,
@@ -18,14 +17,22 @@ const images: string[] = [
   Wedding.photo10,
   Wedding.photo11,
   Wedding.photo12,
-  Wedding.photo16,
-  Wedding.photo17,
-  Wedding.photo5,
+  Wedding.photo13,
   Wedding.photo14,
   Wedding.photo15,
+  Wedding.photo16,
+  Wedding.photo17,
   Wedding.photo18,
   Wedding.photo19,
-  Wedding.photo20
+  Wedding.photo20,
+  Wedding.photo21,
+  Wedding.photo22,
+  Wedding.photo23,
+  Wedding.photo24,
+  Wedding.photo25,
+  Wedding.photo26,
+  Wedding.photo27,
+  Wedding.photo28
 ];
 
 export default function Component() {
