@@ -4,15 +4,11 @@ $header-height: 50px;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 14px 0;
   z-index: 5000;
-
-  &.show {
-    display: flex;
-  }
 
   .modal {
     width: 100%;

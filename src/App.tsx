@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <>
-      <AniOverlay count={80} />
+      <AniOverlay count={80} className={styles.animation} />
       <Intro onComplete={() => setIntro(false)} />
       {!intro && (
         <div className={styles.wrap}>

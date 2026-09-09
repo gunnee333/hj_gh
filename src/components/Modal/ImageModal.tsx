@@ -51,9 +51,6 @@ export function ImageModal({
 
   useEffect(() => {
     setCurrentIndex(index);
-    if (index !== undefined) {
-      swiperRef.current?.slideTo(index, 0);
-    }
   }, [index]);
 
   useEffect(() => {
@@ -72,11 +69,13 @@ export function ImageModal({
     };
   }, [visible]);
 
+  if (!visible) {
+    return <></>;
+  }
+
   return (
     <div
-      className={[styles.modalOverlay, visible ? styles.show : undefined].join(
-        ' '
-      )}
+      className={styles.modalOverlay}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -100,7 +99,7 @@ export function ImageModal({
           <Swiper
             className={styles.swiper}
             spaceBetween={0}
-            initialSlide={currentIndex}
+            initialSlide={index || currentIndex}
             slidesPerView="auto"
             centeredSlides={true}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
