@@ -36,7 +36,7 @@
   justify-content: center;
   z-index: 10000000;
   opacity: 1;
-  transition: opacity 1s ease;
+  transition: opacity 1.8s ease;
 
   &.fadeOut {
     opacity: 0;

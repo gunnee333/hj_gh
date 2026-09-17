@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import styles from "./style.module.scss";
-import { CONSTANT } from "../../util";
-import { useFontSize } from "../../context/FontSizeContext";
-import _ from "lodash";
+import { useEffect, useState } from 'react';
+import styles from './style.module.scss';
+import { CONSTANT } from '../../util';
+import { useFontSize } from '../../context/FontSizeContext';
+import _ from 'lodash';
 
 const MENU_LIST: { id: string; title: string }[] = [
-  { id: CONSTANT.ELEMENT_ID.HOME, title: "모시는 글" },
-  { id: CONSTANT.ELEMENT_ID.CALENDAR, title: "달력" },
-  { id: CONSTANT.ELEMENT_ID.GALLERY, title: "사진첩" },
-  { id: CONSTANT.ELEMENT_ID.INFOMATION, title: "안내사항" },
-  { id: CONSTANT.ELEMENT_ID.LOCATION, title: "오시는 길" },
-  { id: CONSTANT.ELEMENT_ID.ACCOUNT, title: "마음 전하실 곳" },
-  { id: CONSTANT.ELEMENT_ID.GUEST_BOOK, title: "방명록" },
+  { id: CONSTANT.ELEMENT_ID.HOME, title: '모시는 글' },
+  { id: CONSTANT.ELEMENT_ID.CALENDAR, title: '달력' },
+  { id: CONSTANT.ELEMENT_ID.GALLERY, title: '사진첩' },
+  { id: CONSTANT.ELEMENT_ID.INFOMATION, title: '안내사항' },
+  { id: CONSTANT.ELEMENT_ID.LOCATION, title: '오시는 길' },
+  { id: CONSTANT.ELEMENT_ID.ACCOUNT, title: '마음 전하실 곳' },
+  { id: CONSTANT.ELEMENT_ID.GUEST_BOOK, title: '방명록' }
 ];
 
 export default function Component() {
@@ -23,21 +23,21 @@ export default function Component() {
   function scrollToId(id: string) {
     setIsMenuOpen(false);
     setTimeout(() => {
-      if (id === "home") {
-        window.scrollTo({
+      if (id === 'home') {
+        document.getElementById(CONSTANT.ELEMENT_ID.SCROLL_DIV)?.scrollTo({
           top: 0,
           left: 0,
-          behavior: "smooth",
+          behavior: 'smooth'
         });
       } else {
         let scrollElement = document.getElementById(id);
-        scrollElement?.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 200);
   }
 
   const handleScroll = () => {
-    const el = document.documentElement;
+    const el = document.getElementById(CONSTANT.ELEMENT_ID.SCROLL_DIV);
     if (!el) {
       return;
     }
@@ -60,7 +60,9 @@ export default function Component() {
       if (lastActiveIndex === -1) {
         newTabs[0].active = true;
       } else {
-        newTabs = newTabs.map((_tab, index) => (index !== lastActiveIndex ? { ..._tab, active: false } : _tab));
+        newTabs = newTabs.map((_tab, index) =>
+          index !== lastActiveIndex ? { ..._tab, active: false } : _tab
+        );
       }
       const newActiveTab = newTabs.find((item) => item.active);
       if (newActiveTab) {
@@ -71,10 +73,14 @@ export default function Component() {
   const throttleHandleScroll = _.throttle(handleScroll, 300);
 
   useEffect(() => {
-    window.addEventListener("scroll", throttleHandleScroll);
+    document
+      .getElementById(CONSTANT.ELEMENT_ID.SCROLL_DIV)
+      ?.addEventListener('scroll', throttleHandleScroll);
 
     return () => {
-      window.addEventListener("scroll", throttleHandleScroll);
+      document
+        .getElementById(CONSTANT.ELEMENT_ID.SCROLL_DIV)
+        ?.addEventListener('scroll', throttleHandleScroll);
     };
   });
 
@@ -93,19 +99,35 @@ export default function Component() {
             +
           </div>
         </div>
-        <div className={styles.item} onClick={() => setIsMenuOpen((prev) => !prev)}>
-          <div className={[styles.menu, isMenuOpen ? styles.active : undefined].join(" ")}>
+        <div
+          className={styles.item}
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+        >
+          <div
+            className={[
+              styles.menu,
+              isMenuOpen ? styles.active : undefined
+            ].join(' ')}
+          >
             <span></span>
             <span></span>
             <span></span>
           </div>
-          <div className={[styles.toggleMenu, isMenuOpen ? styles.show : styles.hide].join(" ")}>
+          <div
+            className={[
+              styles.toggleMenu,
+              isMenuOpen ? styles.show : styles.hide
+            ].join(' ')}
+          >
             {MENU_LIST.map((item) => {
               const isActive = item.title === activeMenu;
               return (
                 <div
                   key={item.title}
-                  className={[styles.menuItem, isActive ? styles.active : undefined].join(" ")}
+                  className={[
+                    styles.menuItem,
+                    isActive ? styles.active : undefined
+                  ].join(' ')}
                   onClick={() => scrollToId(item.id)}
                 >
                   {item.title}

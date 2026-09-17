@@ -11,6 +11,7 @@ export interface IPergson {
 
 const constants = {
   ELEMENT_ID: {
+    SCROLL_DIV: 'root',
     HOME: 'home',
     GALLERY: 'gallery',
     LOCATION: 'location',

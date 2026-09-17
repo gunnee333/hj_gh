@@ -20,6 +20,7 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
       setTimeout(() => changeSpeed(1.5), 500);
       setTimeout(() => changeSpeed(1.9), 1000);
       setTimeout(() => changeSpeed(2.4), 1600);
+      setTimeout(() => setIsFading(true), 1800);
       setTimeout(() => changeSpeed(2.6), 2000);
       setTimeout(() => changeSpeed(3), 2500);
       setTimeout(() => changeSpeed(3.5), 3000);
