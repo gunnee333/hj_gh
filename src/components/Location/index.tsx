@@ -200,7 +200,6 @@ export default function Component() {
           <Svgs.Close fill={'black'} />
         </div>
         <div className={styles.modalContainer}>
-          <div className={styles.division} />
           <div className={styles.list}>
             <div className={styles.page}>
               {currentIndex + 1} / {SHUTTLE_BUS_IMAGE.length}{' '}

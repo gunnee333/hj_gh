@@ -94,6 +94,7 @@ export function AttendeeModal({
       isCenter
       className={styles.attendeeModal}
       contentClassName={styles.modalWrap}
+      toWay="none"
     >
       <div className={styles.close} onClick={close}>
         <Svgs.Close fill={'black'} />

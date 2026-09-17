@@ -215,18 +215,22 @@
 
     .close {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 5px;
+      right: 5px;
       cursor: pointer;
     }
 
     .modalContainer {
-      padding: 25px 0;
+      padding: 40px 0 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 24px;
       white-space: nowrap;
+      height: 100%;
+      max-height: calc(96vh - 32px);
+      max-height: calc(96svh - 32px);
+      max-height: calc(96dvh - 32px);
 
       .list {
         display: flex;
@@ -249,6 +253,7 @@
           :global(.swiper-wrapper) {
             display: flex;
             align-items: flex-start;
+            flex: 1;
           }
 
           > div {
@@ -271,7 +276,7 @@
               width: 100%;
               max-width: 100vw;
               height: auto;
-              max-height: 100svh;
+              max-height: 60vh;
               object-fit: contain;
               display: block;
             }
