@@ -16,6 +16,7 @@
   min-height: 100vh;
   position: relative;
   padding-top: var(--menu-height);
+  overflow-y: hidden;
 
   .layout {
     display: flex;
@@ -23,6 +24,7 @@
     width: var(--view-width);
     background-color: var(--background-color1);
     min-height: 100vh;
+    overflow-y: hidden;
 
     .page {
       display: flex;
@@ -30,6 +32,7 @@
       height: 100%;
       overflow-x: hidden;
       background-color: var(--background-color1);
+      overflow-y: hidden;
     }
   }
 }

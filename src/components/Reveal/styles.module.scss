@@ -1,0 +1,31 @@
+.reveal {
+  display: flex;
+  flex-direction: column;
+
+  &.green {
+    background-color: var(--background-color1);
+    border-bottom: 6px dashed var(--background-color2);
+  }
+  &.ivory {
+    background-color: var(--background-color2);
+    border-bottom: 6px dashed var(--background-color1);
+  }
+
+  .children {
+    .revealItem {
+      opacity: 0;
+      transform: translateY(var(--reveal-distance));
+      transition:
+        opacity var(--reveal-duration) cubic-bezier(0.22, 1, 0.36, 1),
+        transform var(--reveal-duration) cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--reveal-delay);
+    }
+  }
+
+  &.show {
+    .children .revealItem {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

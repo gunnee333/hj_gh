@@ -1,26 +1,24 @@
 import { useState } from 'react';
+import { Menu, Intro, AniOverlay } from './components';
 import {
   Header,
-  Account,
+  InviteText,
   Calendar,
   Gallery,
-  GuestBook,
-  InviteText,
-  Location,
-  Menu,
-  Intro,
   Infomation,
-  AniOverlay
-} from './components';
+  Location,
+  Account,
+  GuestBook
+} from './sections';
 import styles from './layout.module.scss';
 
 export default function App() {
-  const [intro, setIntro] = useState(true);
+  const [intro, setIntro] = useState(false);
 
   return (
     <>
       <AniOverlay count={80} className={styles.animation} />
-      <Intro onComplete={() => setIntro(false)} />
+      {/* <Intro onComplete={() => setIntro(false)} /> */}
       {!intro && (
         <div className={styles.wrap}>
           <Menu />

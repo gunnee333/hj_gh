@@ -9,6 +9,11 @@ $header-height: 50px;
   justify-content: center;
   padding: 14px 0;
   z-index: 5000;
+  overflow: visible;
+
+  * {
+    overflow: visible;
+  }
 
   .modal {
     width: 100%;
@@ -54,6 +59,8 @@ $header-height: 50px;
       justify-content: center;
 
       .swiper {
+        height: stretch;
+
         :global(.swiper-wrapper) {
           display: flex;
           align-items: center;

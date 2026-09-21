@@ -16,8 +16,8 @@ export default function Svg({
         fill={fill}
         stroke={stroke}
         strokeWidth={0.5}
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
