@@ -1,11 +1,13 @@
 {
   "files": {
     "main.css": "/hj_gh/static/css/main.db49daa4.css",
-    "main.js": "/hj_gh/static/js/main.513ef83e.js",
+    "main.js": "/hj_gh/static/js/main.5de98d5f.js",
     "static/js/453.e861b200.chunk.js": "/hj_gh/static/js/453.e861b200.chunk.js",
     "static/media/photo26.jpeg": "/hj_gh/static/media/photo26.69b75109bd5d320d642a.jpeg",
     "static/media/photo4.jpeg": "/hj_gh/static/media/photo4.4b64ac7facf438401432.jpeg",
     "static/media/photo6.jpeg": "/hj_gh/static/media/photo6.c520e742890b56d692dc.jpeg",
+    "static/media/door.mp4": "/hj_gh/static/media/door.cf1c18128f5ff5b22be5.mp4",
+    "static/media/door.png": "/hj_gh/static/media/door.800e2b4b5f6663b3d060.png",
     "static/media/photo14.jpeg": "/hj_gh/static/media/photo14.818e1e449b141b74bf62.jpeg",
     "static/media/photo12.jpeg": "/hj_gh/static/media/photo12.04ea05c744fd62936d64.jpeg",
     "static/media/photo19.jpeg": "/hj_gh/static/media/photo19.82cdb1b7520dd066d648.jpeg",
@@ -40,11 +42,11 @@
     "static/media/naver-map.webp": "/hj_gh/static/media/naver-map.858d9f7e87f64727a074.webp",
     "index.html": "/hj_gh/index.html",
     "main.db49daa4.css.map": "/hj_gh/static/css/main.db49daa4.css.map",
-    "main.513ef83e.js.map": "/hj_gh/static/js/main.513ef83e.js.map",
+    "main.5de98d5f.js.map": "/hj_gh/static/js/main.5de98d5f.js.map",
     "453.e861b200.chunk.js.map": "/hj_gh/static/js/453.e861b200.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.db49daa4.css",
-    "static/js/main.513ef83e.js"
+    "static/js/main.5de98d5f.js"
   ]
 }
