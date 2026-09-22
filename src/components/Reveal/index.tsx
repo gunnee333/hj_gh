@@ -10,6 +10,7 @@ interface RevealProps {
   threshold?: number;
   id?: string;
   backgroundType?: 'green' | 'ivory';
+  isBottomBorder?: boolean;
 }
 
 interface RevealItemProps {
@@ -22,11 +23,12 @@ export default function Component({
   children,
   className = '',
   id,
-  delay = 0,
-  duration = 800,
-  distance = 24,
-  threshold = 0.2,
-  backgroundType = 'green'
+  delay = 300,
+  duration = 1000,
+  distance = 30,
+  threshold = 0.3,
+  backgroundType = 'green',
+  isBottomBorder = true
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -82,6 +84,7 @@ export default function Component({
       id={id}
       className={[
         styles[backgroundType],
+        isBottomBorder ? '' : styles.notBorder,
         styles.reveal,
         isVisible ? styles.show : ''
       ].join(' ')}

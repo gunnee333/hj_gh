@@ -37,31 +37,33 @@ export default function Component() {
   return (
     <Reveal className={styles.container} id={CONSTANT.ELEMENT_ID.CALENDAR}>
       <div className={styles.title}>달력</div>
-      <div className={styles.date}>
-        {moment(CONSTANT.date.dateISO).format('YYYY. MM. DD. (ddd) HH시')}
-      </div>
-      <div className={styles.desc}>
-        {d.days === 0 ? (
-          <div className={styles.text}>
-            오늘은 {CONSTANT.groom.name.slice(1, 3)} <span>♥</span>{' '}
-            {CONSTANT.bride.name.slice(1, 3)}의 결혼식입니다.
-          </div>
-        ) : (
-          <>
+      <div className={styles.content}>
+        <div className={styles.date}>
+          {moment(CONSTANT.date.dateISO).format('YYYY. MM. DD. (ddd) HH시')}
+        </div>
+        <div className={styles.desc}>
+          {d.days === 0 ? (
             <div className={styles.text}>
-              D {isBefore ? '-' : '+'} <span>{Math.abs(d.diffDays)}</span>
+              오늘은 {CONSTANT.groom.name.slice(1, 3)} <span>♥</span>{' '}
+              {CONSTANT.bride.name.slice(1, 3)}의 결혼식입니다.
             </div>
-            {d.diff !== 0 && (
-              <div className={styles.timer}>
-                {d.days > 0 && <span>{String(d.days)}일</span>}
-                <span>{String(d.hours)}시간</span>
-                <span>{String(d.mins)}분</span>
-                <span>{String(d.secs)}초</span>
-                <div>{isBefore ? '남았습니다.' : '지났습니다.'}</div>
+          ) : (
+            <>
+              <div className={styles.text}>
+                D {isBefore ? '-' : '+'} <span>{Math.abs(d.diffDays)}</span>
               </div>
-            )}
-          </>
-        )}
+              {d.diff !== 0 && (
+                <div className={styles.timer}>
+                  {d.days > 0 && <span>{String(d.days)}일</span>}
+                  <span>{String(d.hours)}시간</span>
+                  <span>{String(d.mins)}분</span>
+                  <span>{String(d.secs)}초</span>
+                  <div>{isBefore ? '남았습니다.' : '지났습니다.'}</div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
       <div className={styles.tableContainer}>
         <div className={styles.date}>

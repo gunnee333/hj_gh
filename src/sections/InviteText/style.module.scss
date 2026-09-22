@@ -15,19 +15,25 @@
     color: var(--title-color);
     margin-bottom: 8px;
   }
-  .desc {
-    font-size: 0.9rem;
-    line-height: 160%;
-    color: var(--title-color);
+
+  .content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-  }
+    gap: 30px;
 
-  .names {
-    font-family: 'NEXON_Gothic';
-  }
+    .desc {
+      font-size: 0.9rem;
+      line-height: 160%;
+      color: var(--title-color);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
+    .names {
+      font-family: 'NEXON_Gothic';
+    }
+  }
   .btnContainer {
     display: flex;
     align-items: center;

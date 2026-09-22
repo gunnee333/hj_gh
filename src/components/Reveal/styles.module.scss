@@ -10,6 +10,9 @@
     background-color: var(--background-color2);
     border-bottom: 6px dashed var(--background-color1);
   }
+  &.notBorder {
+    border-bottom: none;
+  }
 
   .children {
     .revealItem {

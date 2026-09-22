@@ -135,6 +135,8 @@ export default function Component() {
       className={styles.container}
       id={CONSTANT.ELEMENT_ID.GUEST_BOOK}
       backgroundType="ivory"
+      delay={150}
+      isBottomBorder={false}
     >
       <div className={styles.title}>방명록</div>
       <div className={styles.commentForm}>

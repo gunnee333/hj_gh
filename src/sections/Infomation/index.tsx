@@ -7,7 +7,7 @@ export default function Component() {
   return (
     <Reveal className={styles.container} id={CONSTANT.ELEMENT_ID.INFOMATION}>
       <div className={styles.title}>안내사항</div>
-      <div className={styles.row}>
+      <Reveal className={styles.row} isBottomBorder={false}>
         <div className={styles.item}>
           <div className={styles.itemTitle}>01</div>
           <div className={styles.itemContent}>
@@ -32,7 +32,7 @@ export default function Component() {
             좋은 날의 추억을 사진으로 간직하시면 좋겠습니다.
           </div>
         </div>
-      </div>
+      </Reveal>
     </Reveal>
   );
 }

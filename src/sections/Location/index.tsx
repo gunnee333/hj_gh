@@ -71,6 +71,7 @@ export default function Component() {
         className={styles.container}
         id={CONSTANT.ELEMENT_ID.LOCATION}
         backgroundType="ivory"
+        delay={150}
       >
         <div className={styles.title}>오시는 길</div>
         <div className={styles.desc}>

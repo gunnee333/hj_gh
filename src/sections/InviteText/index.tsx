@@ -18,36 +18,38 @@ export default function Component() {
         backgroundType="ivory"
       >
         <div className={styles.title}>초대합니다.</div>
-        <div className={styles.desc}>
-          서로 다른 길을 걸어온 두 사람이
-          <br />
-          같은 곳을 바라보며 함께 걷기로 했습니다.
-          <br />
-          <br />
-          이제 두 사람은
-          <br />
-          사랑과 신뢰를 바탕으로
-          <br />
-          하나의 가정을 이루고자 합니다.
-          <br />
-          <br />
-          새로운 시작의 순간에 함께하시어
-          <br />
-          따뜻한 축복을 전해주시면 감사하겠습니다.
-          <br />
-        </div>
-        <div className={[styles.desc, styles.names].join(' ')}>
-          <div>
-            <b>{CONSTANT.groomDad.name}</b> • <b>{CONSTANT.groomMom.name}</b> 의
-            장남
+        <div className={styles.content}>
+          <div className={styles.desc}>
+            서로 다른 길을 걸어온 두 사람이
             <br />
-            <b>{CONSTANT.groom.name}</b>
+            같은 곳을 바라보며 함께 걷기로 했습니다.
+            <br />
+            <br />
+            이제 두 사람은
+            <br />
+            사랑과 신뢰를 바탕으로
+            <br />
+            하나의 가정을 이루고자 합니다.
+            <br />
+            <br />
+            새로운 시작의 순간에 함께하시어
+            <br />
+            따뜻한 축복을 전해주시면 감사하겠습니다.
+            <br />
           </div>
-          <div>
-            故 <b>{CONSTANT.brideDad.name}</b> • <b>{CONSTANT.brideMom.name}</b>{' '}
-            의 장녀
-            <br />
-            <b>{CONSTANT.bride.name}</b>
+          <div className={[styles.desc, styles.names].join(' ')}>
+            <div>
+              <b>{CONSTANT.groomDad.name}</b> • <b>{CONSTANT.groomMom.name}</b>{' '}
+              의 장남
+              <br />
+              <b>{CONSTANT.groom.name}</b>
+            </div>
+            <div>
+              故 <b>{CONSTANT.brideDad.name}</b> •{' '}
+              <b>{CONSTANT.brideMom.name}</b> 의 장녀
+              <br />
+              <b>{CONSTANT.bride.name}</b>
+            </div>
           </div>
         </div>
         <div className={styles.btnContainer}>

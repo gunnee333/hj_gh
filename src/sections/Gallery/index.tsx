@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Wedding } from '../../assets';
 import styles from './style.module.scss';
 import { CONSTANT } from '../../util';
 import { ImageModal } from '../../components/Modal/ImageModal';
 import { Reveal } from '../../components';
 
+const rowNum = 4;
 const images: string[] = [
   Wedding.photo1,
   Wedding.photo2,
@@ -36,8 +37,24 @@ const images: string[] = [
   Wedding.photo28
 ];
 
+function getGroups() {
+  const groups: { img: string; index: number }[][] = [];
+  for (const [index, img] of images.entries()) {
+    let lastIndex = Math.max(groups.length - 1, 0);
+    if ((groups[lastIndex] || []).length === rowNum) {
+      lastIndex++;
+    }
+    if (!groups[lastIndex]) {
+      groups[lastIndex] = [];
+    }
+    groups[lastIndex].push({ img: img, index });
+  }
+  return groups;
+}
+
 export default function Component() {
   const [openIndex, setOpenIndex] = useState<number>();
+  const groups = useMemo(getGroups, []);
 
   return (
     <>
@@ -45,19 +62,22 @@ export default function Component() {
         className={styles.container}
         id={CONSTANT.ELEMENT_ID.GALLERY}
         backgroundType="ivory"
+        delay={150}
       >
         <div className={styles.title}>사진첩</div>
-        <div className={styles.listContainer}>
-          {images.map((item, index) => (
-            <div
-              key={index}
-              className={styles.photoItem}
-              onClick={() => setOpenIndex(index)}
-            >
-              <img src={item} alt={`wedding_${index}`} />
-            </div>
-          ))}
-        </div>
+        {groups.map((_images, j) => (
+          <div className={styles.listContainer} key={j}>
+            {_images.map(({ img, index }) => (
+              <div
+                key={index}
+                className={styles.photoItem}
+                onClick={() => setOpenIndex(index)}
+              >
+                <img src={img} alt={`wedding_${index}`} />
+              </div>
+            ))}
+          </div>
+        ))}
       </Reveal>
       <ImageModal
         visible={openIndex !== undefined}
