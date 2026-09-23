@@ -51,7 +51,7 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
           setStart(true);
           setTimeout(() => {
             onComplete?.();
-          }, 1000);
+          }, 700);
         }}
         onEnded={() => {
           setIsFading(true);

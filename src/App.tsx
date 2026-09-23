@@ -13,7 +13,7 @@ import {
 import styles from './layout.module.scss';
 
 export default function App() {
-  const [intro, setIntro] = useState(false);
+  const [intro, setIntro] = useState(true);
 
   return (
     <>
