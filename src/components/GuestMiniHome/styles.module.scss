@@ -1,0 +1,602 @@
+// ==========================================================================
+// styles.module.scss — 도트게임(포켓몬류 16비트 RPG) 감성 하객 정원
+// 사용: import styles from './styles.module.scss';  →  <div className={styles.avatar} />
+//
+// 폰트: Galmuri9 (한글 도트 폰트)를 앱 진입점에서 한 번 불러오면 더 그럴싸해집니다.
+//   npm i galmuri   →   import 'galmuri/dist/galmuri.css';
+// (폰트가 없으면 monospace로 대체되어 동작은 그대로입니다)
+// ==========================================================================
+
+// ---- 화면 안 색 팔레트 (컬러 도트게임 톤). 이 값들만 바꾸면 전체 분위기가 바뀝니다 ----
+$ink: #2b2b33; // 아웃라인 / 기본 텍스트 (캐릭터 outline과 동일해야 통일감이 있어요)
+$paper: #fdf6e3; // 대화창 · HUD · 이름표에 쓰는 종이색 (포켓몬 텍스트창 느낌)
+$sky: #bfe8ff;
+$grass: #7cc576;
+$grass-dark: #5da058;
+
+// ---- 나무 전용 고정 팔레트 (캐릭터 색과 분리) ----
+$tree-leaf: #4f9a4c;
+$tree-leaf-light: #7cd071;
+$tree-trunk: #8a5a34;
+
+// ---- 게임기 본체(쉘) 색 ----
+$shell: #c9c5ba;
+$shell-hi: #e6e3da;
+$shell-lo: #a29e94;
+$bezel: #4d4f61;
+$button: #d1495b;
+$button-lo: #8a2c37;
+
+// ---- 크기 ----
+$px: 3px; // 캐릭터 스프라이트 1픽셀 크기 (12 x 16 픽셀 캐릭터)
+$cell: 48px; // 캐릭터 한 칸의 너비
+
+$font-pixel: 'Galmuri9', 'Galmuri11', 'DungGeunMo', 'Press Start 2P', monospace;
+
+// ==========================================================================
+// 캐릭터 스프라이트 색 — sprites.ts 숫자 1~5와 1:1 대응
+// 1 아웃라인(고정) · 2 머리카락 · 3 피부 · 4 옷 메인색 · 5 옷 포인트(흰색 고정)
+// 2~4는 캐릭터마다 --hair / --skin / --outfit 변수로 다르게 채워집니다.
+// ==========================================================================
+.avPx1 {
+  fill: $ink;
+}
+.avPx2 {
+  fill: var(--hair, #4a3327);
+}
+.avPx3 {
+  fill: var(--skin, #ffd9b3);
+}
+.avPx4 {
+  fill: var(--outfit, #82a8db);
+}
+.avPx5 {
+  fill: #ffffff;
+}
+
+// 나무 전용 색 (숫자 1~4, 캐릭터와 무관한 고정 팔레트)
+.treePx1 {
+  fill: $ink;
+}
+.treePx2 {
+  fill: $tree-leaf;
+}
+.treePx3 {
+  fill: $tree-leaf-light;
+}
+.treePx4 {
+  fill: $tree-trunk;
+}
+
+// ==========================================================================
+// 게임기 본체
+// ==========================================================================
+.console {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 16px 16px 22px;
+  background: $shell;
+  border-radius: 12px 12px 48px 12px;
+  box-shadow:
+    inset 3px 3px 0 $shell-hi,
+    inset -3px -3px 0 $shell-lo,
+    0 6px 0 $shell-lo,
+    0 12px 18px rgba(0, 0, 0, 0.18);
+  font-family: $font-pixel;
+  color: $ink;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bezel {
+  padding: 12px 20px 12px;
+  background: $bezel;
+  border-radius: 8px 8px 28px 8px;
+}
+
+.bezelTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: #c7c9db;
+}
+
+.led {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff5a5f;
+  box-shadow: 0 0 6px #ff5a5f;
+}
+
+.brand {
+  white-space: nowrap;
+}
+
+// ==========================================================================
+// 화면
+// ==========================================================================
+.screen {
+  position: relative;
+  overflow: hidden;
+  background: $paper;
+  border: 3px solid $ink;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 8px;
+  font-size: 10px;
+  line-height: 1.2;
+  background: $paper;
+  border-bottom: 3px solid $ink;
+}
+
+.hudTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hudCount {
+  flex-shrink: 0;
+}
+
+// 하늘 + 잔디 필드
+.field {
+  position: relative;
+  overflow: hidden;
+  min-height: 224px;
+  background-color: $grass;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Crect x='4' y='5' width='1' height='2' fill='%235da058'/%3E%3Crect x='5' y='4' width='1' height='3' fill='%235da058'/%3E%3Crect x='6' y='5' width='1' height='2' fill='%235da058'/%3E%3Crect x='16' y='16' width='1' height='2' fill='%235da058'/%3E%3Crect x='17' y='15' width='1' height='3' fill='%235da058'/%3E%3Crect x='18' y='16' width='1' height='2' fill='%235da058'/%3E%3C/svg%3E");
+  background-size: 48px 48px;
+  image-rendering: pixelated;
+
+  // 은은한 CRT 스캔라인 (색은 그대로 두고 가로줄만 살짝)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.08) 0 1px,
+      transparent 1px 3px
+    );
+  }
+}
+
+.sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  z-index: 0;
+  background: $sky;
+  border-bottom: 2px solid rgba($ink, 0.15);
+}
+
+.tree {
+  position: absolute;
+  top: 6px;
+  z-index: 1;
+  width: 32px;
+  height: 40px;
+}
+
+.treeL {
+  left: 8px;
+}
+
+.treeR {
+  right: 8px;
+}
+
+// 장식용 꽃 (캐릭터/나무와 무관한 단색 사각 도트)
+.flower {
+  position: absolute;
+  z-index: 1;
+  width: 6px;
+  height: 6px;
+  image-rendering: pixelated;
+  box-shadow: 0 0 0 1px rgba($ink, 0.35);
+}
+.flowerRed {
+  background: #ef5b5b;
+}
+.flowerYellow {
+  background: #ffd166;
+}
+.flowerWhite {
+  background: #ffffff;
+}
+
+// 하객이 서있는 마당
+.yard {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-content: flex-end;
+  justify-content: center;
+  gap: 4px 0;
+  min-height: 224px;
+  padding: 56px 6px 10px;
+}
+
+.empty {
+  width: 100%;
+  padding-bottom: 24px;
+  font-size: 10px;
+  line-height: 1.8;
+  text-align: center;
+  color: $ink;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+// ==========================================================================
+// 캐릭터 (아바타)
+// ==========================================================================
+.avatar {
+  position: relative;
+  flex: 0 0 $cell;
+  width: $cell;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+
+  &:focus-visible {
+    outline: 2px dashed $ink;
+    outline-offset: 2px;
+  }
+
+  &:active .sprite {
+    transform: translateY($px);
+  }
+}
+
+// 새로 도착한 손님: 깜빡이며 등장
+.avatarNew {
+  animation: blinkIn 0.7s steps(1, end) both;
+}
+
+.sprite {
+  position: relative;
+  width: $px * 12;
+  height: $px * 16;
+
+  // 발밑 그림자 (도트 한 줄)
+  &::after {
+    content: '';
+    position: absolute;
+    left: $px * 2;
+    right: $px * 2;
+    bottom: -$px;
+    height: $px;
+    background: rgba($ink, 0.28);
+  }
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+// 좌우 반전 (일부 캐릭터는 반대쪽을 보게)
+.flip .frame {
+  transform: scaleX(-1);
+}
+
+// 2프레임 제자리 걷기 — 프레임을 뚝뚝 끊어서 전환합니다
+.frameA {
+  animation: frameA 0.9s steps(1, end) var(--delay, 0s) infinite both;
+}
+
+.frameB {
+  opacity: 0;
+  animation: frameB 0.9s steps(1, end) var(--delay, 0s) infinite both;
+}
+
+.nameplate {
+  max-width: $cell;
+  margin-top: 6px;
+  padding: 1px 3px;
+  font-size: 10px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $ink;
+  background: $paper;
+  border: 2px solid $ink;
+}
+
+// 인원수 배지
+.party {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  z-index: 3;
+  padding: 0 3px;
+  font-size: 10px;
+  line-height: 12px;
+  color: $paper;
+  background: $ink;
+}
+
+// 선택 커서 ▼
+.cursor {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  z-index: 4;
+  margin-left: -5px;
+  font-size: 10px;
+  line-height: 1;
+  color: $ink;
+  animation: blink 0.8s steps(1, end) infinite;
+}
+
+// 새 손님 "!" 이모트
+.emote {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  z-index: 4;
+  width: 14px;
+  height: 16px;
+  margin-left: -7px;
+  font-size: 11px;
+  line-height: 12px;
+  text-align: center;
+  color: $ink;
+  background: $paper;
+  border: 2px solid $ink;
+  animation: emoteHop 1.2s steps(6, end) forwards;
+}
+
+// ==========================================================================
+// 대화창
+// ==========================================================================
+.dialog {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  z-index: 10;
+  min-height: 64px;
+  max-height: 130px;
+  padding: 8px 12px 12px;
+  overflow-y: auto;
+  font-size: 10px;
+  line-height: 1.8;
+  white-space: pre-line;
+  color: $ink;
+  cursor: pointer;
+  background: $paper;
+  border: 3px solid $ink;
+  box-shadow: inset 0 0 0 2px $paper;
+}
+
+.dialogArrow {
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  animation: blink 0.8s steps(1, end) infinite;
+}
+
+// ==========================================================================
+// 조작부 (십자키 = 이전/다음 하객, A/B = 선택/닫기)
+// ==========================================================================
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 8px 4px;
+}
+
+.dpad {
+  position: relative;
+  width: 64px;
+  height: 64px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: #2d2d33;
+    box-shadow: 0 3px 0 #1a1a1e;
+    border-radius: 3px;
+  }
+
+  &::before {
+    top: 0;
+    left: 21px;
+    width: 22px;
+    height: 64px;
+  }
+
+  &::after {
+    top: 21px;
+    left: 0;
+    width: 64px;
+    height: 22px;
+  }
+}
+
+.dpadBtn {
+  position: absolute;
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.dpadUp {
+  top: 0;
+  left: 21px;
+}
+.dpadDown {
+  bottom: 0;
+  left: 21px;
+}
+.dpadLeft {
+  top: 21px;
+  left: 0;
+}
+.dpadRight {
+  top: 21px;
+  right: 0;
+}
+
+.ab {
+  display: flex;
+  gap: 14px;
+  transform: rotate(-24deg);
+}
+
+.btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  font-family: inherit;
+  font-size: 12px;
+  color: $shell-hi;
+  cursor: pointer;
+  background: $button;
+  border: 0;
+  border-radius: 50%;
+  box-shadow:
+    inset -3px -3px 0 rgba(0, 0, 0, 0.25),
+    0 3px 0 $button-lo;
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow:
+      inset -3px -3px 0 rgba(0, 0, 0, 0.25),
+      0 1px 0 $button-lo;
+  }
+}
+
+.pills {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 14px;
+  transform: rotate(-24deg);
+}
+
+.pill {
+  display: block;
+  width: 28px;
+  height: 8px;
+  background: #7b7d8c;
+  border-radius: 4px;
+  box-shadow: 0 2px 0 #4c4e5c;
+}
+
+// ==========================================================================
+// 애니메이션
+// ==========================================================================
+@keyframes frameA {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes frameB {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes blinkIn {
+  0%,
+  20%,
+  40%,
+  60% {
+    opacity: 0;
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes emoteHop {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+// 움직임 줄이기 설정을 켠 기기에서는 걷기/깜빡임을 멈춥니다
+@media (prefers-reduced-motion: reduce) {
+  .frameA,
+  .frameB,
+  .avatarNew,
+  .emote,
+  .cursor,
+  .dialogArrow {
+    animation: none;
+  }
+
+  .frameB {
+    opacity: 0;
+  }
+}

@@ -1,23 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './style.module.scss';
 import { Svgs } from '../../assets';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
 import Modal from '../../components/Modal';
+import { useAttendee } from '../../hooks';
+import { IAttendeeInputData } from '../../hooks/useAttendee';
 
-type GuestSide = 'groom' | 'bride';
-type GuestCount = {
-  attendance: boolean;
-  side: GuestSide;
-  name: string;
-  relation: string;
-  adultCount: number;
-  childCount: number;
-  infantCount: number;
-  message?: string;
-  createdAt?: any;
-};
-const initData: GuestCount = {
+const initData: IAttendeeInputData = {
   side: 'groom',
   attendance: true,
   adultCount: 1,
@@ -25,10 +13,9 @@ const initData: GuestCount = {
   infantCount: 0,
   name: '',
   relation: '',
-  message: ''
+  message: '',
+  password: ''
 };
-
-const DB_ID = process.env.REACT_APP_FIREBASE_ATTENDEE_LIST_DB_ID!;
 
 export function AttendeeModal({
   visible,
@@ -37,53 +24,23 @@ export function AttendeeModal({
   visible: boolean;
   close?: () => void;
 }) {
-  const [data, setData] = useState<GuestCount>(initData);
+  const { submit, error, submitting, checkComplete } = useAttendee();
+  const [data, setData] = useState<IAttendeeInputData>(initData);
   const [loading, setLoading] = useState(false);
 
-  const { isComplete, errMsg } = useMemo(() => {
-    const result = { isComplete: false, errMsg: '오류' };
-    try {
-      if (loading) {
-        result.errMsg = '전송중입니다.';
-        throw Error(result.errMsg);
-      }
-      if (!data.name.trim()) {
-        result.errMsg = '이름을 입력해주세요.';
-        throw Error(result.errMsg);
-      }
-      if (data.attendance) {
-        const totalCount = data.adultCount + data.childCount + data.infantCount;
-        if (totalCount === 0) {
-          result.errMsg = '방문 인원을 선택해주세요.';
-          throw Error(result.errMsg);
-        }
-      }
-      result.isComplete = true;
-    } catch {}
-    return result;
-  }, [data, loading]);
-
   async function handleSubmit() {
+    const { isComplete, errMsg } = checkComplete(data);
     if (!isComplete) {
       return alert(errMsg);
     }
-    try {
-      setLoading(true);
-      await addDoc(collection(db, DB_ID), {
-        ...data,
-        adultCount: data.attendance ? data.adultCount : 0,
-        childCount: data.attendance ? data.childCount : 0,
-        infantCount: data.attendance ? data.infantCount : 0,
-        createdAt: serverTimestamp()
-      });
-      alert('방문 여부가 전달되었습니다.');
+    setLoading(true);
+    const isDone = await submit(data);
+    setLoading(false);
+    if (isDone) {
       setData(initData);
-      close?.();
-    } catch (error) {
-      console.error(error);
+      alert('방문 여부가 전달되었습니다.');
+    } else {
       alert('저장 중 문제가 발생했습니다.');
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -309,13 +266,29 @@ export function AttendeeModal({
               />
             </div>
           </div>
+          <div className={styles.row}>
+            <div className={styles.title}>
+              <span></span>
+            </div>
+            <div className={styles.inputContainer}>
+              <input
+                value={data.password}
+                type="password"
+                placeholder="삭제용 암호 (4자 이상)"
+                onChange={(e) =>
+                  setData((prev) => ({ ...prev, password: e.target.value }))
+                }
+                maxLength={30}
+              />
+            </div>
+          </div>
         </div>
         <div className={styles.btnContainer}>
           <button
             onClick={handleSubmit}
             className={[
               styles.submit,
-              isComplete ? styles.active : undefined
+              submitting ? styles.active : undefined
             ].join(' ')}
           >
             {loading ? '저장 중...' : '전달하기'}

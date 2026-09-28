@@ -1,31 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
-import bcrypt from 'bcryptjs';
-import {
-  addDoc,
-  collection,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
-  updateDoc
-} from 'firebase/firestore';
-import { db } from '../../lib/firebase';
+import { useState } from 'react';
 import styles from './style.module.scss';
 import { CONSTANT } from '../../util';
 import { Svgs } from '../../assets';
 import { Reveal } from '../../components';
-
-type CommentDoc = {
-  id: string;
-  name: string;
-  message: string;
-  pwHash: string;
-  deleted?: boolean;
-  createdAt?: any;
-};
-
-const DB_ID = process.env.REACT_APP_FIREBASE_GUEST_BOOK_DB_ID!;
+import { useGuestBook } from '../../hooks';
 
 function formatDate(ts: any) {
   if (!ts?.toDate) return '';
@@ -41,94 +19,26 @@ function formatDate(ts: any) {
 }
 
 export default function Component() {
+  const { items, error, submitting, checkComplete, onSubmit, requestDelete } =
+    useGuestBook();
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [password, setPassword] = useState('');
 
-  const [items, setItems] = useState<CommentDoc[]>([]);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string>();
-
-  const colRef = useMemo(() => collection(db, DB_ID), []);
-
-  useEffect(() => {
-    const q = query(colRef, orderBy('createdAt', 'desc'));
-    const unsub = onSnapshot(
-      q,
-      (snap) => {
-        const next = snap.docs
-          .map((d) => {
-            const data = d.data() as any;
-            return {
-              id: d.id,
-              name: String(data.name ?? ''),
-              message: String(data.message ?? ''),
-              pwHash: String(data.pwHash ?? ''),
-              deleted: Boolean(data.deleted ?? false),
-              createdAt: data.createdAt
-            };
-          })
-          .filter((item) => !item.deleted);
-        setItems(next);
-      },
-      (e) => setError(e.message)
-    );
-    return () => unsub();
-  }, [colRef]);
-
-  async function onSubmit() {
-    const n = name.trim();
-    const m = message.trim();
-    const p = password.trim();
-
-    if (!n) return setError('이름을 입력해 주세요.');
-    if (n.length > 20) return setError('이름은 20자 이내로 입력해 주세요.');
-    if (!m) return setError('축하 메시지를 입력해 주세요.');
-    if (m.length > 300) return setError('댓글은 300자 이내로 입력해 주세요.');
-    if (p.length < 4) return setError('비밀번호는 4자 이상으로 입력해 주세요.');
-    if (p.length > 30) return setError('비밀번호는 30자 이내로 입력해 주세요.');
-
-    try {
-      setError(undefined);
-      setSubmitting(true);
-      const pwHash = await bcrypt.hash(p, 10);
-
-      await addDoc(colRef, {
-        name: n,
-        message: m,
-        pwHash,
-        deleted: false,
-        createdAt: serverTimestamp()
-      });
-
+  async function handleSubmit() {
+    const { isComplete, errMsg } = checkComplete({ name, message, password });
+    if (!isComplete) {
+      return alert(errMsg);
+    }
+    const isDone = await onSubmit({ name, message, password });
+    if (isDone) {
+      setName('');
       setMessage('');
       setPassword('');
-    } catch (e: any) {
-      setError(e?.message ?? '댓글 등록에 실패했습니다.');
-    } finally {
-      setSubmitting(false);
+    } else {
+      alert('댓글 등록에 실패했습니다.');
     }
   }
-
-  const requestDelete = async (c: CommentDoc) => {
-    if (c.deleted) return;
-
-    const input = prompt('댓글 삭제 비밀번호를 입력해 주세요.');
-    if (!input) return;
-
-    const ok = await bcrypt.compare(input, c.pwHash);
-    if (!ok) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
-    // 소프트 삭제: deleted=true, message=""
-    await updateDoc(doc(db, DB_ID, c.id), {
-      deleted: true,
-      message: '',
-      pwHash: c.pwHash
-    });
-  };
 
   return (
     <Reveal
@@ -169,7 +79,7 @@ export default function Component() {
           <div className={styles.btnContainer}>
             {!!error && <div className={styles.errorText}>{error}</div>}
 
-            <button type="button" onClick={onSubmit}>
+            <button type="button" onClick={handleSubmit}>
               {submitting ? '작성 중...' : '글쓰기'}
             </button>
           </div>

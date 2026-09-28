@@ -9,6 +9,30 @@ export interface IPergson {
   isGone?: boolean;
 }
 
+export type GuestSide = 'groom' | 'bride';
+export type GuestCount = {
+  attendance: boolean;
+  side: GuestSide;
+  name: string;
+  relation: string;
+  adultCount: number;
+  childCount: number;
+  infantCount: number;
+  message?: string;
+  pwHash?: string;
+  deleted?: boolean;
+  createdAt?: any;
+};
+
+export type CommentDoc = {
+  id: string;
+  name: string;
+  message: string;
+  pwHash: string;
+  deleted?: boolean;
+  createdAt?: any;
+};
+
 const constants = {
   ELEMENT_ID: {
     SCROLL_DIV: 'root',

@@ -4,7 +4,7 @@ import { Svgs } from '../../assets';
 import { CONSTANT } from '../../util';
 import { TelModal } from './TelModal';
 import { AttendeeModal } from './AttendeeModal';
-import { Reveal } from '../../components';
+import { GuestMiniHome, Reveal } from '../../components';
 
 export default function Component() {
   const [isTelModal, setIsTelModal] = useState(false);
@@ -62,6 +62,7 @@ export default function Component() {
             참석여부 알려주기
           </button>
         </div>
+        <GuestMiniHome />
       </Reveal>
       <TelModal visible={isTelModal} close={() => setIsTelModal(false)} />
       <AttendeeModal
