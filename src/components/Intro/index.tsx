@@ -8,15 +8,9 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
   const [isFading, setIsFading] = useState(false);
   const ref = useRef<HTMLVideoElement>(null);
 
-  const changeSpeed = (speed: number) => {
-    if (ref.current) {
-      ref.current.playbackRate = speed;
-    }
-  };
-
   useEffect(() => {
     if (start) {
-      setTimeout(() => setIsFading(true), 1500);
+      setTimeout(() => setIsFading(true), 1100);
     }
   }, [start]);
 
