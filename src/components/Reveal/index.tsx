@@ -33,50 +33,50 @@ export default function Component({
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const element = ref.current;
+  // useEffect(() => {
+  //   const element = ref.current;
 
-    if (!element) return;
+  //   if (!element) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (entry.isIntersecting) {
+  //         setIsVisible(true);
 
-          // 한 번 나타난 후에는 observer 제거
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold
-      }
-    );
+  //         // 한 번 나타난 후에는 observer 제거
+  //         observer.unobserve(entry.target);
+  //       }
+  //     },
+  //     {
+  //       threshold
+  //     }
+  //   );
 
-    observer.observe(element);
+  //   observer.observe(element);
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [threshold]);
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // }, [threshold]);
 
-  const animatedChildren = React.Children.map(children, (child, index) => {
-    if (!React.isValidElement<RevealItemProps>(child)) {
-      return child;
-    }
+  // const animatedChildren = React.Children.map(children, (child, index) => {
+  //   if (!React.isValidElement<RevealItemProps>(child)) {
+  //     return child;
+  //   }
 
-    const childClassName = child.props.className ?? '';
-    const childStyle = child.props.style ?? {};
+  //   const childClassName = child.props.className ?? '';
+  //   const childStyle = child.props.style ?? {};
 
-    return React.cloneElement(child as React.ReactElement<RevealItemProps>, {
-      className: [childClassName, styles.revealItem].join(' '),
-      style: {
-        ...childStyle,
-        '--reveal-delay': `${index * delay}ms`,
-        '--reveal-duration': `${index * duration}ms`,
-        '--reveal-distance': `${index * distance}px`
-      } as React.CSSProperties
-    });
-  });
+  //   return React.cloneElement(child as React.ReactElement<RevealItemProps>, {
+  //     className: [childClassName, styles.revealItem].join(' '),
+  //     style: {
+  //       ...childStyle,
+  //       '--reveal-delay': `${index * delay}ms`,
+  //       '--reveal-duration': `${index * duration}ms`,
+  //       '--reveal-distance': `${index * distance}px`
+  //     } as React.CSSProperties
+  //   });
+  // });
 
   return (
     <div
@@ -97,7 +97,8 @@ export default function Component({
       }
     >
       <div className={[styles.children, className].join(' ')}>
-        {animatedChildren}
+        {/* {animatedChildren} */}
+        {children}
       </div>
     </div>
   );
