@@ -62,7 +62,7 @@ $menu-move-y: calc(($menu-height - $menu-line-height) / 2);
         border-radius: 4px;
         width: calc(var(--menu-height) * 0.6);
         height: calc(var(--menu-height) * 0.6);
-        font-family: sans-serif;
+        padding-top: 2px;
       }
 
       .menu {

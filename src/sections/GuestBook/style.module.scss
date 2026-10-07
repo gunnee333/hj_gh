@@ -63,8 +63,11 @@
       }
 
       .errorText {
-        color: #fd6666;
-        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-red);
+        font-size: 0.6rem;
       }
 
       .btnContainer {
@@ -88,6 +91,12 @@
             filter 120ms ease,
             opacity 120ms ease;
           background-color: var(--color-ivory);
+
+          &:disabled {
+            color: var(--color-gray5);
+            background-color: var(--color-gray7);
+            cursor: default;
+          }
         }
       }
     }

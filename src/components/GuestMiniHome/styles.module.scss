@@ -60,8 +60,8 @@ $font-pixel: 'Galmuri9', 'Galmuri11', 'DungGeunMo', 'Press Start 2P', monospace;
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background: #ff5a5f;
-        box-shadow: 0 0 6px #ff5a5f;
+        background: var(--color-red);
+        box-shadow: 0 0 6px var(--color-red);
       }
 
       .brand {
@@ -71,9 +71,9 @@ $font-pixel: 'Galmuri9', 'Galmuri11', 'DungGeunMo', 'Press Start 2P', monospace;
         justify-content: center;
 
         span {
-          padding: 0 2px;
+          padding: 0 0.2rem 0.15rem;
           font-size: 1rem;
-          line-height: 100%;
+          line-height: 0;
         }
       }
     }
@@ -367,7 +367,7 @@ $font-pixel: 'Galmuri9', 'Galmuri11', 'DungGeunMo', 'Press Start 2P', monospace;
     padding: 6px 10px 8px;
     font-family: inherit;
     font-size: 0.7rem;
-    color: #fff;
+    color: var(--color-bagie2);
     cursor: pointer;
     background: $button;
     border: 0;

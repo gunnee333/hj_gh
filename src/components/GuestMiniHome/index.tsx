@@ -219,7 +219,7 @@ export default function GuestMinihompy() {
         </div>
         <button onClick={() => setIsAttendeeModal(true)} className={styles.btn}>
           <Svgs.Carendar stroke="#fff" width={12} />
-          참석여부 알려주기
+          참여하기
         </button>
       </div>
       <AttendeeModal

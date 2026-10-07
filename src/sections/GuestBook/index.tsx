@@ -19,14 +19,15 @@ function formatDate(ts: any) {
 }
 
 export default function Component() {
-  const { items, error, submitting, checkComplete, onSubmit, requestDelete } =
+  const { items, submitting, checkComplete, onSubmit, requestDelete } =
     useGuestBook();
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [password, setPassword] = useState('');
 
+  const { isComplete, errMsg } = checkComplete({ name, message, password });
+
   async function handleSubmit() {
-    const { isComplete, errMsg } = checkComplete({ name, message, password });
     if (!isComplete) {
       return alert(errMsg);
     }
@@ -77,9 +78,11 @@ export default function Component() {
           </div>
 
           <div className={styles.btnContainer}>
-            {!!error && <div className={styles.errorText}>{error}</div>}
+            {!!errMsg && !(!name && !message && !password) && (
+              <div className={styles.errorText}>{errMsg}</div>
+            )}
 
-            <button type="button" onClick={handleSubmit}>
+            <button type="button" onClick={handleSubmit} disabled={!isComplete}>
               {submitting ? '작성 중...' : '글쓰기'}
             </button>
           </div>

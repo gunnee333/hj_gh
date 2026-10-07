@@ -13,7 +13,7 @@ interface IParticle {
   rotation: number;
 }
 
-export function Paper({ count = 20, className = '' }: IProps) {
+export function Paper({ count = 16, className = '' }: IProps) {
   const particles = useMemo<IParticle[]>(() => {
     return Array.from({ length: count }, (_, index) => ({
       id: index,

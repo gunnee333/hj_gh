@@ -97,11 +97,19 @@ function createParticle(
 
 export function Heart({
   count = 35,
-  color = ['#f8b4c4', '#f4a6ba', '#ffffff'],
+  color = [
+    '#d4a5a0',
+    '#c58d87',
+    '#f4d4a0',
+    '#b0a2c2',
+    '#c8dea0',
+    '#ecbebd',
+    '#faefd8'
+  ],
   minSize = 3,
   maxSize = 6,
   minSpeed = 0.2,
-  maxSpeed = 1.0,
+  maxSpeed = 0.8,
   gravity = 0.005,
   opacity = 0.8,
   className = ''

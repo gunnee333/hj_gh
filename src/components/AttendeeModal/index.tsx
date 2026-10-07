@@ -288,6 +288,12 @@ export function AttendeeModal({
             </div>
           </div>
         </div>
+        {!!errMsg &&
+          !(
+            !data.name &&
+            !data.password &&
+            (data.attendance ? data.adultCount > 0 : true)
+          ) && <div className={styles.error}>{errMsg}</div>}
         <div className={styles.btnContainer}>
           <button
             onClick={handleSubmit}

@@ -56,12 +56,12 @@ export default function useAttendee() {
       returnValue.errMsg = '이름은 20자 이내로 입력해 주세요.';
     } else if (message.length > 300) {
       returnValue.errMsg = '댓글은 300자 이내로 입력해 주세요.';
+    } else if (!!data.attendance && totalCount === 0) {
+      returnValue.errMsg = '방문 인원을 선택해주세요.';
     } else if (password.length < 4) {
       returnValue.errMsg = '비밀번호는 4자 이상으로 입력해 주세요.';
     } else if (password.length > 30) {
       returnValue.errMsg = '비밀번호는 30자 이내로 입력해 주세요.';
-    } else if (!!data.attendance && totalCount === 0) {
-      returnValue.errMsg = '방문 인원을 선택해주세요.';
     } else {
       returnValue.isComplete = true;
       returnValue.errMsg = '';
