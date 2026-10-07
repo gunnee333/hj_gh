@@ -10,7 +10,7 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
 
   useEffect(() => {
     if (start) {
-      setTimeout(() => setIsFading(true), 1100);
+      setTimeout(() => setIsFading(true), 1600);
     }
   }, [start]);
 
@@ -37,7 +37,7 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
           setStart(true);
           setTimeout(() => {
             onComplete?.();
-          }, 700);
+          }, 1400);
         }}
         onEnded={() => {
           setIsFading(true);
