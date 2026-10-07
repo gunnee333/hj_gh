@@ -3,12 +3,10 @@ import styles from './style.module.scss';
 import { Svgs } from '../../assets';
 import { CONSTANT } from '../../util';
 import { TelModal } from './TelModal';
-import { AttendeeModal } from './AttendeeModal';
 import { GuestMiniHome, Reveal } from '../../components';
 
 export default function Component() {
   const [isTelModal, setIsTelModal] = useState(false);
-  const [isAttendeeModal, setIsAttendeeModal] = useState(false);
 
   return (
     <>
@@ -57,18 +55,10 @@ export default function Component() {
             <Svgs.Phone2 width={18} />
             연락하기
           </button>
-          <button onClick={() => setIsAttendeeModal(true)}>
-            <Svgs.Carendar />
-            참석여부 알려주기
-          </button>
         </div>
         <GuestMiniHome />
       </Reveal>
       <TelModal visible={isTelModal} close={() => setIsTelModal(false)} />
-      <AttendeeModal
-        visible={isAttendeeModal}
-        close={() => setIsAttendeeModal(false)}
-      />
     </>
   );
 }

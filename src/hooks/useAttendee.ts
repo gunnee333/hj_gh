@@ -128,6 +128,6 @@ export default function useAttendee() {
     checkComplete,
     submitting,
     error,
-    items: items
+    items
   };
 }

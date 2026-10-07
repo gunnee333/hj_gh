@@ -24,12 +24,13 @@ export function AttendeeModal({
   visible: boolean;
   close?: () => void;
 }) {
-  const { submit, error, submitting, checkComplete } = useAttendee();
+  const { submit, checkComplete } = useAttendee();
   const [data, setData] = useState<IAttendeeInputData>(initData);
   const [loading, setLoading] = useState(false);
 
+  const { isComplete, errMsg } = checkComplete(data);
+
   async function handleSubmit() {
-    const { isComplete, errMsg } = checkComplete(data);
     if (!isComplete) {
       return alert(errMsg);
     }
@@ -37,6 +38,7 @@ export function AttendeeModal({
     const isDone = await submit(data);
     setLoading(false);
     if (isDone) {
+      close?.();
       setData(initData);
       alert('방문 여부가 전달되었습니다.');
     } else {
@@ -268,7 +270,10 @@ export function AttendeeModal({
           </div>
           <div className={styles.row}>
             <div className={styles.title}>
-              <span></span>
+              <span>
+                비밀번호
+                <Dot />
+              </span>
             </div>
             <div className={styles.inputContainer}>
               <input
@@ -288,7 +293,7 @@ export function AttendeeModal({
             onClick={handleSubmit}
             className={[
               styles.submit,
-              submitting ? styles.active : undefined
+              isComplete ? styles.active : undefined
             ].join(' ')}
           >
             {loading ? '저장 중...' : '전달하기'}
