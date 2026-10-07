@@ -13,3 +13,4 @@ export { default as KakaoTalk } from './KakaoTalk';
 export { default as KakaoPay } from './KakaoPay';
 export { default as Search } from './Search';
 export { default as Carendar } from './Carendar';
+export { default as Waves } from './Waves';

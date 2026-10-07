@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { Wedding } from '../../assets';
+import { Svgs, Wedding } from '../../assets';
 import { CONSTANT } from '../../util';
 import styles from './style.module.scss';
 // @ts-ignore
@@ -21,6 +21,10 @@ export default function Component() {
           <br />
           {CONSTANT.place.fullName}
         </div>
+      </div>
+
+      <div className={styles.bottomAni}>
+        <Svgs.Waves />
       </div>
     </div>
   );
