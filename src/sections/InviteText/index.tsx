@@ -56,7 +56,7 @@ export default function Component() {
             연락하기
           </button>
         </div>
-        {/* <GuestMiniHome /> */}
+        <GuestMiniHome />
       </Reveal>
       <TelModal visible={isTelModal} close={() => setIsTelModal(false)} />
     </>

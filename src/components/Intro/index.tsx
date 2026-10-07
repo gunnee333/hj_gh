@@ -16,15 +16,7 @@ export default function Component({ onComplete }: { onComplete?: () => void }) {
 
   useEffect(() => {
     if (start) {
-      setTimeout(() => changeSpeed(1.2), 0);
-      setTimeout(() => changeSpeed(1.5), 500);
-      setTimeout(() => changeSpeed(1.9), 1000);
-      setTimeout(() => changeSpeed(2.4), 1600);
-      setTimeout(() => changeSpeed(2.6), 2000);
-      setTimeout(() => setIsFading(true), 2300);
-      setTimeout(() => changeSpeed(3), 2500);
-      setTimeout(() => changeSpeed(3.5), 3000);
-      setTimeout(() => changeSpeed(10), 3200);
+      setTimeout(() => setIsFading(true), 1500);
     }
   }, [start]);
 

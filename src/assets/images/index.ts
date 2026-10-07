@@ -6,4 +6,4 @@ export { default as shuttleBus1 } from './shuttle_bus_1.webp';
 export { default as shuttleBus2 } from './shuttle_bus_2.webp';
 export { default as shuttleBus3 } from './shuttle_bus_3.webp';
 export { default as shuttleBus4 } from './shuttle_bus_4.webp';
-export { default as introImg } from './door.png';
+export { default as introImg } from './door.jpeg';

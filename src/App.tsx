@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <>
-      {/* {!intro && <AniOverlay.Heart className={styles.animation} />} */}
+      {!intro && <AniOverlay.Heart className={styles.animation} />}
       <Intro onComplete={() => setIntro(false)} />
       {!intro && (
         <div className={styles.wrap}>

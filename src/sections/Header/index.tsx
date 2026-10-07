@@ -9,7 +9,7 @@ import { AniOverlay } from '../../components';
 export default function Component() {
   return (
     <div className={styles.container} id={CONSTANT.ELEMENT_ID.HOME}>
-      {/* <AniOverlay.Paper /> */}
+      <AniOverlay.Paper />
 
       <img src={Wedding.main} alt="" className={styles.img} />
       <div className={styles.bottomText}>
