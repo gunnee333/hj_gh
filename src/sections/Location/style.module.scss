@@ -152,19 +152,30 @@
         }
 
         &.train {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+
           button {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 4px;
           }
-          .row {
+          .trainItem {
             span {
               font-weight: 600;
+              font-size: 0.85rem;
             }
 
             &.green span {
-              color: #54b800;
+              color: rgb(97, 195, 109);
+            }
+            &.blue span {
+              color: rgb(81, 99, 171);
+            }
+            &.purple span {
+              color: rgb(156, 101, 226);
             }
           }
         }

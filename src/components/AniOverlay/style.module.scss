@@ -1,35 +1,10 @@
-.page-motion-layer {
-  pointer-events: none;
-  mix-blend-mode: normal;
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(#000 92%, #0000 100%);
-  mask-image: linear-gradient(#000 92%, #0000 100%);
-
-  &.layer-1 {
-    z-index: 2;
-  }
-  &.layer-2 {
-    z-index: 3;
-  }
-  &.layer-3 {
-    z-index: 4;
-  }
-  &.layer-4 {
-    z-index: 5;
-  }
-  &.fx-dusty-bloom,
-  .fx-cool-pink-bloom,
-  .fx-coral-bloom,
-  .fx-sun-bloom,
-  .fx-lavender-bloom,
-  .fx-spring-leaves,
-  .fx-autumn-leaves,
-  .fx-floating-hearts {
-    mix-blend-mode: multiply;
-  }
-}
+$color-1: #d4a5a0;
+$color-2: #c58d87;
+$color-3: #f4d4a0;
+$color-4: #b0a2c2;
+$color-5: #c8dea0;
+$color-6: #ecbebd;
+$color-7: #faefd8;
 
 .container {
   position: absolute;
@@ -40,7 +15,7 @@
   height: 100%;
 
   --motion-size-scale: 0.4;
-  --motion-fall-scale: 0.9421686746987952;
+  --motion-fall-scale: 1;
 
   .item {
     width: calc(9px * var(--motion-size-scale, 1) * var(--motion-fluid, 1));
@@ -105,25 +80,25 @@
     }
 
     &:nth-child(7n + 1) svg > * {
-      fill: #d4a5a0;
+      fill: $color-1;
     }
     &:nth-child(7n + 2) svg > * {
-      fill: #c58d87;
+      fill: $color-2;
     }
     &:nth-child(7n + 3) svg > * {
-      fill: #f4d4a0;
+      fill: $color-3;
     }
     &:nth-child(7n + 4) svg > * {
-      fill: #b0a2c2;
+      fill: $color-4;
     }
     &:nth-child(7n + 5) svg > * {
-      fill: #c8dea0;
+      fill: $color-5;
     }
     &:nth-child(7n + 6) svg > * {
-      fill: #ecbebd;
+      fill: $color-6;
     }
     &:nth-child(7n) svg > * {
-      fill: #faefd8;
+      fill: $color-7;
     }
 
     svg {
@@ -133,27 +108,6 @@
       position: absolute;
       top: 0;
       left: 0;
-
-      .l1 {
-        opacity: 0.55;
-        filter: blur(0.4px);
-        transform: translateZ(-3px) scale(1.2);
-      }
-      .l2 {
-        opacity: 0.78;
-        transform: translateZ(-1px) scale(1.08);
-      }
-      .l3 {
-        opacity: 0.92;
-        transform: translateZ(1px) scale(0.95);
-      }
-      .l4 {
-        opacity: 1;
-        transform: translateZ(3px) scale(0.85);
-      }
-      > * {
-        stroke: none;
-      }
     }
   }
 }

@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import { Images, Svgs } from '../../assets';
 import { CONSTANT } from '../../util';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Modal from '../../components/Modal';
 import { Reveal } from '../../components';
+import { LocationInfoModal, TLocationInfoType } from './LocationInfoModal';
 
 let cnt = 0;
 
@@ -42,24 +41,8 @@ function tmapLoad() {
   }, 800);
 }
 
-const SHUTTLE_BUS_IMAGE: { imgUrl: string; infomation: string }[] = [
-  {
-    imgUrl: Images.shuttleBus1,
-    infomation: `문래역 4번출구로 나오셔서 우측으로 바라보시면\n[셔틀버스 타는곳] 화살표가 보입니다.`
-  },
-  {
-    imgUrl: Images.shuttleBus2,
-    infomation: `위 사진 길을 따라서 250M 앞으로 직진해주세요.`
-  },
-  { imgUrl: Images.shuttleBus3, infomation: `노란색 버스가 있습니다.` },
-  {
-    imgUrl: Images.shuttleBus4,
-    infomation: `[규수당웨딩]을 확인하시어 버스에 탑승해주시면 됩니다.\n셔틀버스는 3~5분간격으로 운행합니다.`
-  }
-];
-
 export default function Component() {
-  const [isModal, setIsModal] = useState(false);
+  const [infoModalType, setInfoModalType] = useState<TLocationInfoType>();
 
   useEffect(() => {
     kakaoMapLoad();
@@ -121,20 +104,42 @@ export default function Component() {
               지하철 이용시
             </div>
             <div className={[styles.itemContent, styles.train].join(' ')}>
-              <div className={[styles.row, styles.green].join(' ')}>
+              <div className={[styles.trainItem, styles.green].join(' ')}>
                 <span>2호선</span> 문래역
+                <div className={styles.row}>
+                  - 셔틀버스 : 4번출구 뒷쪽 셔틀버스 운행{' '}
+                  <button
+                    onClick={() => setInfoModalType('bus')}
+                    className={styles.infoBtn}
+                  >
+                    안내 <Svgs.Search />
+                  </button>
+                </div>
+                <div>- 도보 : 5번출구 전방 직진 300M (약 7분)</div>
               </div>
-              <div className={styles.row}>
-                - 셔틀버스 : 4번출구(뒷쪽) 셔틀버스 운행{' '}
-                <button
-                  onClick={() => setIsModal(true)}
-                  className={styles.infoBtn}
-                >
-                  안내 <Svgs.Search />
-                </button>
+              <div className={[styles.trainItem, styles.blue].join(' ')}>
+                <span>1호선</span> 영등포역
+                <div className={styles.row}>
+                  - 도보 : 6번출구 (약 15분){' '}
+                  <button
+                    onClick={() => setInfoModalType('line1')}
+                    className={styles.infoBtn}
+                  >
+                    안내 <Svgs.Search />
+                  </button>
+                </div>
               </div>
-              <div className={styles.row}>
-                - 도보 : 5번출구 전방 직진 300M (약 7분)
+              <div className={[styles.trainItem, styles.purple].join(' ')}>
+                <span>5호선</span> 영등포시장역
+                <div className={styles.row}>
+                  - 도보 : 4번출구 (약 15분){' '}
+                  <button
+                    onClick={() => setInfoModalType('line5')}
+                    className={styles.infoBtn}
+                  >
+                    안내 <Svgs.Search />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -193,67 +198,11 @@ export default function Component() {
           </div>
         </div>
       </Reveal>
-      <ShuttleModal visible={isModal} close={() => setIsModal(false)} />
+      <LocationInfoModal
+        visible={!!infoModalType}
+        close={() => setInfoModalType(undefined)}
+        type={infoModalType}
+      />
     </>
-  );
-}
-
-function ShuttleModal({
-  visible,
-  close
-}: {
-  visible: boolean;
-  close?: () => void;
-}) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    if (!visible) {
-      setCurrentIndex(0);
-    }
-  }, [visible]);
-
-  return (
-    <Modal
-      visible={visible}
-      close={close}
-      isCenter={true}
-      className={styles.modal}
-      contentClassName={styles.modalWrap}
-      toWay="none"
-    >
-      <div className={styles.close} onClick={close}>
-        <Svgs.Close fill={'black'} />
-      </div>
-      <div className={styles.modalContainer}>
-        <div className={styles.list}>
-          <div className={styles.page}>
-            {currentIndex + 1} / {SHUTTLE_BUS_IMAGE.length}{' '}
-            <span>우측으로 넘겨주세요 {'>'}</span>
-          </div>
-          <Swiper
-            className={styles.swiper}
-            spaceBetween={0}
-            initialSlide={0}
-            slidesPerView="auto"
-            centeredSlides={true}
-            zoom={{ maxRatio: 2 }}
-            onSlideChange={(e) => {
-              if (!isNaN(Number(e.realIndex))) {
-                setCurrentIndex(e.realIndex);
-              }
-            }}
-          >
-            {SHUTTLE_BUS_IMAGE.map(({ imgUrl, infomation }, i) => (
-              <SwiperSlide key={i} className={styles.modalImg}>
-                <div></div>
-                <img src={imgUrl} alt="오시는 길" />
-                {infomation}
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </div>
-    </Modal>
   );
 }
