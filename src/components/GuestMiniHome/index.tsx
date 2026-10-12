@@ -138,14 +138,13 @@ export default function GuestMinihompy() {
         <div className={styles.bezel}>
           <div className={styles.bezelTop}>
             <span className={styles.led} />
-            <span className={styles.brand}>
-              현중<span>❤︎</span>건희 결혼식
-            </span>
           </div>
 
           <div className={styles.screen}>
             <div className={styles.hud}>
-              <span className={styles.hudTitle}>참석자 놀이터</span>
+              <span className={styles.hudTitle}>
+                현중<span>❤︎</span>건희 결혼식
+              </span>
               <span className={styles.hudCount}>
                 현재 {attendees.length.toLocaleString()}명 참석중
               </span>

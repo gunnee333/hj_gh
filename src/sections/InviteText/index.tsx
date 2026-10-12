@@ -43,8 +43,8 @@ export default function Component() {
               <b>{CONSTANT.groom.name}</b>
             </div>
             <div>
-              故 <b>{CONSTANT.brideDad.name}</b> •{' '}
-              <b>{CONSTANT.brideMom.name}</b> 의 장녀
+              <b>{CONSTANT.brideDad.name}</b> • <b>{CONSTANT.brideMom.name}</b>{' '}
+              의 장녀
               <br />
               <b>{CONSTANT.bride.name}</b>
             </div>

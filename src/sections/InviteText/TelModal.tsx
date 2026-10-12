@@ -3,9 +3,10 @@ import styles from './style.module.scss';
 import { CONSTANT } from '../../util';
 import { Svgs } from '../../assets';
 import Modal from '../../components/Modal';
+import { IPergson } from '../../util/constant';
 
 const groomTelNumList = [CONSTANT.groom, CONSTANT.groomDad, CONSTANT.groomMom];
-const brideTelNumList = [CONSTANT.bride, CONSTANT.brideMom];
+const brideTelNumList = [CONSTANT.bride, CONSTANT.brideMom, CONSTANT.brideDad];
 
 export function TelModal({
   visible,
@@ -43,21 +44,15 @@ export function TelModal({
   );
 }
 
-function TelItem({
-  item
-}: {
-  item: {
-    title: string;
-    name: string;
-    tel?: string | undefined;
-    kakaotalk?: string;
-  };
-}) {
+function TelItem({ item }: { item: IPergson }) {
   return (
     <div className={styles.item}>
       <div className={styles.textContainer}>
         <div className={styles.telTitle}>{item.title}</div>
-        <div className={styles.telName}>{item.name}</div>
+        <div className={styles.telName}>
+          {item.isGone ? '故 ' : ''}
+          {item.name}
+        </div>
       </div>
       <div className={styles.btnList}>
         {!!item.kakaotalk && (
