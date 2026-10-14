@@ -3,7 +3,8 @@ import styles from './style.module.scss';
 import { Images, Svgs } from '../../assets';
 import { CONSTANT } from '../../util';
 import { Reveal } from '../../components';
-import { LocationInfoModal, TLocationInfoType } from './LocationInfoModal';
+import { LocationInfoModal } from './LocationInfoModal';
+import { TLocationInfoType } from './LocationData';
 
 let cnt = 0;
 
@@ -115,7 +116,15 @@ export default function Component() {
                     안내 <Svgs.Search />
                   </button>
                 </div>
-                <div>- 도보 : 5번출구 전방 직진 300M (약 7분)</div>
+                <div className={styles.row}>
+                  - 도보 : 5번출구 전방 직진 300M (약 7분)
+                  <button
+                    onClick={() => setInfoModalType('line2')}
+                    className={styles.infoBtn}
+                  >
+                    안내 <Svgs.Search />
+                  </button>
+                </div>
               </div>
               <div className={[styles.trainItem, styles.blue].join(' ')}>
                 <span>1호선</span> 영등포역
