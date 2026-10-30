@@ -10,7 +10,7 @@ export interface IPergson {
 }
 
 export type GuestSide = 'groom' | 'bride';
-export type GuestCount = {
+export type IAttendance = {
   attendance: boolean;
   side: GuestSide;
   name: string;
@@ -72,21 +72,21 @@ const constants = {
     name: '김용근',
     bank: '신한은행',
     account: '110',
-    tel: '01027403851'
+    tel: ''
   } as IPergson,
   groomMom: {
     title: '신랑 어머니',
     name: '김점순',
     bank: '신한은행',
     account: '110',
-    tel: '01032243851'
+    tel: ''
   } as IPergson,
   bride: {
     title: '신부',
     name: '이건희',
-    bank: '국민은행',
-    account: '287702-04-172216',
-    tel: '01051031952',
+    bank: '카카오뱅크',
+    account: '3333-01-3639139',
+    tel: '01021128433',
     kakaoPay: 'https://qr.kakaopay.com/Ej9C7Nkav',
     kakaotalk: 'http://qr.kakao.com/talk/hptoGRon7.FVoirTMeINaf9i2Uc-'
   } as IPergson,

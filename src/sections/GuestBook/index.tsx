@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './style.module.scss';
 import { CONSTANT } from '../../util';
 import { Svgs } from '../../assets';
-import { Reveal } from '../../components';
+import { Reveal, Rsvp } from '../../components';
 import { useGuestBook } from '../../hooks';
 
 function formatDate(ts: any) {
@@ -50,6 +50,7 @@ export default function Component() {
       isBottomBorder={false}
     >
       <div className={styles.title}>방명록</div>
+      <Rsvp />
       <div className={styles.commentForm}>
         <div className={styles.commentConatiner}>
           <div className={styles.inputContainer}>

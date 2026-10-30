@@ -3,7 +3,7 @@ import styles from './style.module.scss';
 import { Svgs } from '../../assets';
 import { CONSTANT } from '../../util';
 import { TelModal } from './TelModal';
-import { GuestMiniHome, Reveal } from '../../components';
+import { Reveal } from '../../components';
 
 export default function Component() {
   const [isTelModal, setIsTelModal] = useState(false);
@@ -56,7 +56,6 @@ export default function Component() {
             연락하기
           </button>
         </div>
-        <GuestMiniHome />
       </Reveal>
       <TelModal visible={isTelModal} close={() => setIsTelModal(false)} />
     </>

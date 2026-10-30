@@ -8,12 +8,12 @@ import {
 } from 'firebase/firestore';
 import bcrypt from 'bcryptjs';
 import { db } from '../lib/firebase';
-import { GuestCount, GuestSide } from '../util/constant';
+import { IAttendance, GuestSide } from '../util/constant';
 import { useEffect, useMemo, useState } from 'react';
 
 const DB_ID = process.env.REACT_APP_FIREBASE_ATTENDEE_LIST_DB_ID!;
 
-export interface IAttendeeInputData extends GuestCount {
+export interface IAttendeeInputData extends IAttendance {
   attendance: boolean;
   side: GuestSide;
   name: string;
@@ -25,7 +25,7 @@ export interface IAttendeeInputData extends GuestCount {
   password: string;
 }
 
-interface IGuestItem extends GuestCount {
+interface IGuestItem extends IAttendance {
   id: string;
 }
 

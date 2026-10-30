@@ -1,0 +1,465 @@
+// ─────────────────────────────────────────────
+//  WeddingHall  ·  도트 결혼식장
+//  모든 길이는 "도트 px" 이고 --s (배율) 이 곱해집니다.
+// ─────────────────────────────────────────────
+@function px($n) {
+  @return calc(#{$n} * var(--s, 1) * 1px);
+}
+
+$col-width: 88; // 의자 한 칸 너비
+$row-height: 100; // 한 줄 높이
+$side-pad: 16;
+$side-half: 8; // $side-pad / 2
+$garland-w: 60;
+$carpet-w: 96;
+
+// 팔레트 (참고 이미지에서 추출한 크림 / 핑크 / 골드)
+$cream: #fbf1df;
+$cream-line: #f0e0c4;
+$wall: #efdfc2;
+$wall-line: #d8c09a;
+$wall-dark: #c9ae82;
+$gold: #e3c58a;
+$gold-dark: #c79d5b;
+$pink: #f4b9bd;
+$pink-soft: #fbe3dc;
+$ink: #8a5a3b;
+
+%pixel {
+  image-rendering: crisp-edges; // 구형 브라우저 fallback
+  image-rendering: pixelated;
+}
+
+// 벽돌 타일 (SVG)
+$brick: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='36' shape-rendering='crispEdges'><rect width='56' height='36' fill='%23efdfc2'/><rect y='0' width='56' height='2' fill='%23d8c09a'/><rect y='18' width='56' height='2' fill='%23d8c09a'/><rect x='0' y='0' width='2' height='18' fill='%23d8c09a'/><rect x='28' y='18' width='2' height='18' fill='%23d8c09a'/><rect x='4' y='4' width='10' height='2' fill='%23f6e9d0'/><rect x='32' y='22' width='10' height='2' fill='%23f6e9d0'/></svg>");
+
+.wrap {
+  width: 100%;
+}
+
+.hall {
+  position: relative;
+  width: calc(
+    (2 * (var(--cols, 3) * #{$col-width} + #{$side-pad}) + 216) * var(--s, 1) *
+      1px
+  );
+  margin: 0 auto;
+  background: $cream;
+  border: px(4) solid $gold-dark;
+  border-radius: px(8);
+  box-shadow: px(6) px(6) 0 #e6d0aa;
+  overflow: hidden;
+  box-sizing: content-box;
+  user-select: none;
+}
+
+// ───────────── 벽 ─────────────
+.wall {
+  position: relative;
+  height: px(64);
+  background: $brick;
+  background-size: px(56) px(36);
+  border-bottom: px(4) solid $wall-dark;
+  box-shadow: inset 0 px(-8) 0 rgba(201, 174, 130, 0.35);
+  @extend %pixel;
+}
+
+.pillar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: px(28);
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    #e6d1ac 0 px(4),
+    #f8ecd4 px(4) calc(100% - #{px(4)}),
+    #d9c19a calc(100% - #{px(4)})
+  );
+  border-left: px(2) solid $wall-line;
+  border-right: px(2) solid $wall-line;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: px(-4);
+    right: px(-4);
+    height: px(8);
+    background: #f1deb8;
+    border: px(2) solid $wall-line;
+    box-sizing: border-box;
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: 0;
+  }
+}
+
+.wallFlower {
+  position: absolute;
+  left: 50%;
+  top: px(12);
+  width: px(24);
+  transform: translateX(-50%);
+  @extend %pixel;
+}
+
+// ───────────── 바닥 ─────────────
+.floor {
+  position: relative;
+  padding-bottom: px(18);
+  background-color: $cream;
+  background-image:
+    linear-gradient($cream-line px(2), transparent px(2)),
+    linear-gradient(90deg, $cream-line px(2), transparent px(2));
+  background-size: px(44) px(44);
+}
+
+.seating {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding-top: px(18);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  width: calc(
+    (var(--cols, 3) * #{$col-width} + #{$side-pad}) * var(--s, 1) * 1px
+  );
+  padding: 0 px($side-half);
+  box-sizing: border-box;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  height: px($row-height);
+}
+
+.left .row {
+  flex-direction: row-reverse; // 버진로드(오른쪽) 쪽이 첫 번째 칸
+}
+
+.seat {
+  position: relative;
+  flex: 0 0 px($col-width);
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sprite {
+  display: block;
+  width: px(86);
+  height: px(112);
+  margin-bottom: px(-8);
+  max-width: none;
+  @extend %pixel;
+}
+
+.empty {
+  // 빈 의자는 하객이 앉은 의자와 같은 크기로 맞춘다
+  width: px(70);
+  height: px(92);
+  margin-bottom: px(-5);
+}
+
+// ───────────── 하객 ─────────────
+.guest {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  animation: pop 360ms steps(6, end) both;
+  animation-delay: var(--delay, 0ms);
+  transform-origin: 50% 100%;
+}
+
+.clickable {
+  cursor: pointer;
+
+  &:hover .sprite,
+  &:focus-visible .sprite {
+    transform: translateY(px(-3));
+  }
+  &:focus-visible {
+    outline: px(2) dashed $ink;
+    outline-offset: px(2);
+  }
+}
+
+.nameTag {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: px(-14);
+  padding: px(2) px(6);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: px(11);
+  line-height: 1.3;
+  color: $ink;
+  background: #fffaf0;
+  border: px(2) solid $gold-dark;
+  border-radius: px(4);
+  box-shadow: px(2) px(2) 0 rgba(138, 90, 59, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.guest:hover .nameTag,
+.guest:focus-visible .nameTag {
+  opacity: 1;
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: translateY(px(-18)) scale(0.9);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(px(3));
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// ───────────── 버진로드 ─────────────
+.aisle {
+  position: relative;
+  flex: 0 0 px(216);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  z-index: 5;
+}
+
+.garland {
+  flex: 0 0 px($garland-w);
+  background-image: url('./assets/garland.png');
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  @extend %pixel;
+}
+
+.carpet {
+  flex: 0 0 px($carpet-w);
+  position: relative;
+  background-color: $pink-soft;
+  border-left: px(3) solid $gold;
+  border-right: px(3) solid $gold;
+  box-sizing: border-box;
+  // 꽃잎이 흩뿌려진 카펫
+  background-image:
+    radial-gradient(ellipse px(3) px(2) at 18% 12%, $pink 98%, transparent),
+    radial-gradient(ellipse px(3) px(2) at 72% 30%, #f7c9c4 98%, transparent),
+    radial-gradient(ellipse px(2) px(3) at 40% 58%, $pink 98%, transparent),
+    radial-gradient(ellipse px(3) px(2) at 82% 82%, #f7c9c4 98%, transparent),
+    radial-gradient(ellipse px(2) px(3) at 12% 90%, $pink 98%, transparent),
+    linear-gradient(
+      90deg,
+      transparent px(6),
+      rgba(227, 197, 138, 0.55) px(6) px(8),
+      transparent px(8) calc(100% - #{px(8)}),
+      rgba(227, 197, 138, 0.55) calc(100% - #{px(8)}) calc(100% - #{px(6)}),
+      transparent calc(100% - #{px(6)})
+    );
+  background-size:
+    px(96) px(120),
+    px(96) px(120),
+    px(96) px(120),
+    px(96) px(120),
+    px(96) px(120),
+    100% 100%;
+}
+
+// ───────────── 단상 ─────────────
+.stage {
+  position: relative;
+  width: px(460);
+  height: px(172);
+  margin: px(-4) auto 0;
+  z-index: 6;
+}
+
+%block {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+}
+
+.step3 {
+  @extend %block;
+  bottom: 0;
+  width: 100%;
+  height: px(30);
+  background: #f3e2c2;
+  border: px(3) solid $gold-dark;
+  border-radius: px(4);
+  box-shadow:
+    inset 0 px(6) 0 #fbefd6,
+    0 px(4) 0 rgba(138, 90, 59, 0.18);
+}
+
+.step2 {
+  @extend %block;
+  bottom: px(30);
+  width: 86%;
+  height: px(28);
+  background: #f6e7ca;
+  border: px(3) solid $gold-dark;
+  border-radius: px(4);
+  box-shadow: inset 0 px(6) 0 #fdf3de;
+}
+
+.step1 {
+  @extend %block;
+  bottom: px(58);
+  width: 72%;
+  height: px(52);
+
+  .surface {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: px(18);
+    background: #fdf5e4;
+    border: px(3) solid $gold-dark;
+    border-radius: px(4) px(4) 0 0;
+    box-sizing: border-box;
+  }
+  .front {
+    position: absolute;
+    inset: px(15) 0 0 0;
+    background: #f1dfbd;
+    border: px(3) solid $gold-dark;
+    box-sizing: border-box;
+    // 가운데 금테 패널
+    background-image: linear-gradient($gold px(2), transparent px(2));
+    background-size: 100% 100%;
+    box-shadow:
+      inset 0 0 0 px(4) #f1dfbd,
+      inset 0 0 0 px(6) rgba(227, 197, 138, 0.8);
+
+    // 금테 패널 + 하트 장식
+    &::before {
+      content: '';
+      position: absolute;
+      inset: px(9) px(14);
+      border: px(2) solid $gold;
+      border-radius: px(3);
+      background: rgba(255, 255, 255, 0.4);
+    }
+    &::after {
+      content: '♥';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -52%);
+      font-size: px(14);
+      line-height: 1;
+      color: $pink;
+    }
+  }
+}
+
+.stairCarpet {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: px($carpet-w);
+  transform: translateX(-50%);
+  background: $pink-soft;
+  border-left: px(3) solid $gold;
+  border-right: px(3) solid $gold;
+  box-sizing: border-box;
+}
+
+.couple {
+  position: absolute;
+  left: 50%;
+  bottom: px(98);
+  display: flex;
+  align-items: flex-end;
+  gap: px(2);
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.groom {
+  width: px(64);
+  height: auto;
+  @extend %pixel;
+}
+
+.bride {
+  width: px(84);
+  height: auto;
+  @extend %pixel;
+}
+
+.bush {
+  position: absolute;
+  bottom: px(-2);
+  width: px(190);
+  z-index: 4;
+  @extend %pixel;
+}
+
+.bushLeft {
+  left: px(-28);
+}
+
+.bushRight {
+  right: px(-28);
+}
+
+.overflow {
+  position: absolute;
+  right: px(10);
+  top: px(6);
+  padding: px(2) px(8);
+  font-size: px(11);
+  color: $ink;
+  background: #fffaf0;
+  border: px(2) solid $gold-dark;
+  border-radius: px(10);
+  z-index: 30;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guest {
+    animation: none;
+  }
+  .sprite {
+    transition: none;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  margin: 4px 6px;
+  background: var(--color-green);
+  color: var(--color-gray2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+}

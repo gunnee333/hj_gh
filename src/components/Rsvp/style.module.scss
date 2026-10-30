@@ -1,0 +1,715 @@
+.container {
+  max-width: 100%;
+}
+
+.wrapper {
+  --ink: #6d4c50;
+  --pink: #f5dce3;
+  --pink-deep: #df9faf;
+  --cream: #fff8ed;
+  --tile: #f6eadb;
+  --green: #9bb58a;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 4px solid #e6c4c5;
+  border-radius: 8px;
+  background: #fff8ef;
+  color: var(--ink);
+  box-shadow:
+    0 7px 0 #e9d3c9,
+    0 12px 26px rgb(129 83 82 / 12%);
+  image-rendering: pixelated;
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 4vw, 28px);
+  padding: 20px 12px 17px;
+  text-align: center;
+  background: repeating-linear-gradient(
+    90deg,
+    #fff5ec 0 12px,
+    #fff0e9 12px 24px
+  );
+  border-bottom: 3px solid #e7c8bd;
+
+  h2 {
+    margin: 7px 0 0;
+    color: #a9677c;
+    font-size: clamp(16px, 3.4vw, 25px);
+    letter-spacing: 0.04em;
+    text-shadow: 2px 2px 0 #f7dce2;
+  }
+}
+
+.eyebrow {
+  margin: 0;
+  color: #b88a8e;
+  font:
+    8px/1.6 'Press Start 2P',
+    monospace;
+  letter-spacing: 0.03em;
+}
+
+.sparkle {
+  color: #e8b85e;
+  font-size: 22px;
+  text-shadow: 2px 2px 0 #f7df9d;
+}
+
+.scene {
+  position: relative;
+  overflow: hidden;
+  background: #f8ecdc;
+}
+
+.wall {
+  position: relative;
+  height: clamp(110px, 22vw, 175px);
+  overflow: hidden;
+  border-bottom: 5px solid #e5c9ac;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 8%,
+      #fff5e8 8% 10%,
+      transparent 10% 90%,
+      #fff5e8 90% 92%,
+      transparent 92%
+    ),
+    repeating-linear-gradient(90deg, #f7e8d8 0 32px, #fcefe1 32px 64px);
+}
+
+.window {
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  width: 42%;
+  height: 84%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  border: 8px solid #fff4e6;
+  outline: 3px solid #d6b99a;
+  background: linear-gradient(#a9d8ed 0 55%, #e6f5ee 55% 100%);
+  box-shadow: inset 0 0 0 3px #e6c8a8;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: #fff4e6;
+    z-index: 2;
+  }
+  &::before {
+    width: 5px;
+    height: 100%;
+    left: 50%;
+  }
+  &::after {
+    height: 5px;
+    width: 100%;
+    top: 52%;
+  }
+}
+
+.windowCloud {
+  position: absolute;
+  top: 20%;
+  left: 17%;
+  width: 28px;
+  height: 8px;
+  background: #fff9ed;
+  box-shadow:
+    8px -7px 0 #fff9ed,
+    16px 0 0 #fff9ed,
+    80px 18px 0 #fff9ed,
+    88px 11px 0 #fff9ed;
+}
+
+.windowHill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: #b5d3a3;
+  clip-path: polygon(
+    0 100%,
+    0 70%,
+    22% 18%,
+    38% 65%,
+    62% 12%,
+    80% 58%,
+    100% 20%,
+    100% 100%
+  );
+}
+
+.arch {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: -28px;
+  width: 55%;
+  height: 100%;
+  transform: translateX(-50%);
+  border: 10px solid #fef5e7;
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0;
+  box-shadow:
+    inset 4px 0 #e8c9a8,
+    inset -4px 0 #e8c9a8;
+  pointer-events: none;
+}
+
+.archFlower {
+  position: absolute;
+  color: #e7a8bb;
+  font-size: 20px;
+  text-shadow: 2px 2px #fff0d7;
+  &:nth-child(1) {
+    left: -10px;
+    top: 15px;
+  }
+  &:nth-child(2) {
+    left: 45%;
+    top: -10px;
+    color: #f0c66e;
+  }
+  &:nth-child(3) {
+    right: -10px;
+    top: 18px;
+    color: #b9c9a2;
+  }
+}
+
+.wallFlower {
+  position: absolute;
+  z-index: 3;
+  bottom: 8px;
+  color: #df9fb0;
+  font-size: clamp(27px, 6vw, 45px);
+  text-shadow:
+    8px 6px 0 #f0c96e,
+    -8px 10px 0 #a8c89a,
+    0 0 0 3px #fff;
+}
+.wallFlowerLeft {
+  left: 5%;
+}
+.wallFlowerRight {
+  right: 5%;
+}
+
+.room {
+  position: relative;
+  padding: 20px 3% 0;
+  background-color: var(--tile);
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 48%,
+      rgb(207 177 146 / 28%) 49%,
+      rgb(207 177 146 / 28%) 51%,
+      transparent 52%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 48%,
+      rgb(207 177 146 / 22%) 49%,
+      rgb(207 177 146 / 22%) 51%,
+      transparent 52%
+    );
+  background-size: 34px 34px;
+}
+
+.seating {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(48px, 18%) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 2px;
+  min-height: 280px;
+  padding-bottom: 14px;
+}
+
+.seatGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: clamp(67px, 12vw, 88px);
+  align-content: end;
+  justify-items: center;
+  row-gap: 2px;
+  min-width: 0;
+}
+
+.seatCell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  min-width: 0;
+}
+
+.chair {
+  position: relative;
+  z-index: 1;
+  width: clamp(25px, 5.5vw, 40px);
+  height: clamp(28px, 6vw, 43px);
+  margin-bottom: 2px;
+}
+
+.chairBack {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: 64%;
+  border: 3px solid #bd9874;
+  background: #fff3de;
+  box-shadow:
+    inset 0 0 0 2px #f4ddbd,
+    2px 2px 0 #e3c6a4;
+  border-radius: 3px 3px 0 0;
+}
+
+.chairSeat {
+  position: absolute;
+  bottom: 7px;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  border: 2px solid #b88c68;
+  background: #f4d9b4;
+}
+.chairLegLeft,
+.chairLegRight {
+  position: absolute;
+  bottom: 0;
+  width: 3px;
+  height: 10px;
+  background: #b88c68;
+}
+.chairLegLeft {
+  left: 4px;
+}
+.chairLegRight {
+  right: 4px;
+}
+
+.guest {
+  position: absolute;
+  bottom: 14px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.guestSprite {
+  position: relative;
+  width: 28px;
+  height: 42px;
+  image-rendering: pixelated;
+  filter: drop-shadow(1px 2px 0 rgb(109 76 80 / 13%));
+}
+
+.hairBack {
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 18px;
+  height: 17px;
+  background: var(--hair);
+  box-shadow:
+    -3px 5px 0 var(--hair),
+    3px 5px 0 var(--hair),
+    0 3px 0 var(--hair);
+}
+
+.head {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 14px;
+  height: 15px;
+  background: var(--skin);
+  box-shadow:
+    -3px 4px 0 var(--skin),
+    3px 4px 0 var(--skin);
+}
+.eyeLeft,
+.eyeRight {
+  position: absolute;
+  top: 7px;
+  width: 2px;
+  height: 3px;
+  background: #49353b;
+}
+.eyeLeft {
+  left: 3px;
+}
+.eyeRight {
+  right: 3px;
+}
+.blushLeft,
+.blushRight {
+  position: absolute;
+  top: 10px;
+  width: 3px;
+  height: 2px;
+  background: #e89ba4;
+}
+.blushLeft {
+  left: 0;
+}
+.blushRight {
+  right: 0;
+}
+
+.hairTop {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: 18px;
+  height: 7px;
+  background: var(--hair);
+  box-shadow:
+    3px 4px 0 var(--hair),
+    -2px 3px 0 var(--hair);
+}
+.body {
+  position: absolute;
+  top: 20px;
+  left: 4px;
+  width: 20px;
+  height: 13px;
+  background: var(--outfit);
+  box-shadow:
+    inset 0 -3px var(--accent),
+    -3px 3px 0 var(--outfit),
+    3px 3px 0 var(--outfit);
+}
+.armLeft,
+.armRight {
+  position: absolute;
+  top: 22px;
+  width: 5px;
+  height: 11px;
+  background: var(--outfit);
+}
+.armLeft {
+  left: 0;
+}
+.armRight {
+  right: 0;
+}
+.legLeft,
+.legRight {
+  position: absolute;
+  top: 34px;
+  width: 7px;
+  height: 7px;
+  background: #705a60;
+}
+.legLeft {
+  left: 6px;
+}
+.legRight {
+  right: 6px;
+}
+
+.guestName {
+  display: block;
+  max-width: 95%;
+  overflow: hidden;
+  margin-top: 1px;
+  color: #8d6a69;
+  font-size: 9px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 1px 1px #fff8ec;
+}
+
+.emptyGuest {
+  opacity: 0.16;
+}
+.emptySprite {
+  position: relative;
+  width: 24px;
+  height: 30px;
+}
+.emptyHead {
+  position: absolute;
+  top: 0;
+  left: 7px;
+  width: 10px;
+  height: 10px;
+  border: 2px dashed #bfa8a0;
+  background: #fff7eb;
+}
+.emptyBody {
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 18px;
+  height: 14px;
+  border: 2px dashed #bfa8a0;
+  background: #fff7eb;
+}
+
+.aisle {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  border-right: 3px solid #eabfc7;
+  border-left: 3px solid #eabfc7;
+  background:
+    radial-gradient(ellipse at 50% 15%, #fffdf6 0 45%, transparent 47%),
+    repeating-linear-gradient(0deg, #fffaf1 0 22px, #fff2e7 22px 25px);
+  box-shadow:
+    inset 5px 0 0 rgb(255 255 255 / 65%),
+    inset -5px 0 0 rgb(255 255 255 / 65%);
+}
+
+.aislePetal {
+  position: absolute;
+  left: 50%;
+  color: #e8a8ba;
+  font-size: 13px;
+  transform: translateX(-50%);
+  &:nth-child(1) {
+    top: 12%;
+  }
+  &:nth-child(2) {
+    top: 29%;
+    left: 35%;
+  }
+  &:nth-child(3) {
+    top: 49%;
+  }
+  &:nth-child(4) {
+    top: 68%;
+    left: 65%;
+  }
+  &:nth-child(5) {
+    top: 84%;
+  }
+}
+
+.sideDecor {
+  position: absolute;
+  z-index: 3;
+  top: 4%;
+  bottom: 11%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: #d99bb0;
+  font-size: clamp(15px, 3vw, 24px);
+  pointer-events: none;
+  text-shadow:
+    4px 2px 0 #e8c96e,
+    -3px 3px 0 #a8c49b;
+}
+.sideDecorLeft {
+  left: 28%;
+  transform: translateX(-50%);
+}
+.sideDecorRight {
+  right: 28%;
+  transform: translateX(50%);
+}
+
+.altar {
+  position: relative;
+  z-index: 4;
+  width: 78%;
+  margin: 0 auto;
+  padding: 12px 12px 0;
+  border: 4px solid #e6c9ac;
+  border-bottom: 0;
+  border-radius: 48% 48% 0 0 / 22% 22% 0 0;
+  background: #fff0e2;
+  box-shadow:
+    inset 0 0 0 4px #fffaef,
+    0 -3px 0 #f9e4d8;
+  text-align: center;
+}
+
+.altarFlowers {
+  color: #d88ca5;
+  font-size: 22px;
+  letter-spacing: 5px;
+  text-shadow:
+    4px 2px 0 #e8c96e,
+    -4px 2px 0 #a9c69a;
+}
+
+.couple {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 9px;
+  height: 77px;
+  margin-top: 2px;
+}
+
+.couplePerson {
+  position: relative;
+  width: 34px;
+  height: 69px;
+}
+.coupleHead {
+  position: absolute;
+  top: 8px;
+  left: 9px;
+  width: 16px;
+  height: 17px;
+  background: #f0c1a0;
+  box-shadow:
+    -3px 4px 0 #f0c1a0,
+    3px 4px 0 #f0c1a0;
+}
+.groomHair {
+  position: absolute;
+  z-index: 2;
+  top: 4px;
+  left: 7px;
+  width: 20px;
+  height: 10px;
+  background: #302b31;
+  box-shadow:
+    -3px 5px 0 #302b31,
+    3px 3px 0 #302b31;
+}
+.groomSuit {
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 28px;
+  height: 43px;
+  background: #3c3a49;
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12px;
+    width: 5px;
+    height: 27px;
+    background: #fff3e8;
+  }
+}
+.brideDress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 34px;
+  height: 43px;
+  background: #fffdf8;
+  clip-path: polygon(34% 0, 66% 0, 100% 100%, 0 100%);
+  border-bottom: 2px solid #e8cbd0;
+}
+.brideHair {
+  position: absolute;
+  z-index: 2;
+  top: 4px;
+  left: 7px;
+  width: 20px;
+  height: 18px;
+  background: #6b4939;
+  box-shadow:
+    -3px 8px 0 #6b4939,
+    3px 8px 0 #6b4939;
+}
+.veil {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 3px;
+  width: 28px;
+  height: 29px;
+  border: 2px solid #fffdf8;
+  background: rgb(255 255 255 / 45%);
+  clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+}
+
+.altarFront {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 27px;
+  margin: 8px -12px 0;
+  border-top: 3px solid #e6c9ac;
+  background: #f6dfd6;
+  color: #b67c87;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+
+  span:first-child,
+  span:last-child {
+    color: #d990a6;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 620px) {
+  .seating {
+    min-height: 350px;
+  }
+  .seatGrid {
+    grid-auto-rows: 88px;
+  }
+  .guestSprite {
+    transform: scale(1.12);
+    transform-origin: bottom center;
+  }
+  .guestName {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .wrapper {
+    border-width: 3px;
+  }
+  .room {
+    padding-right: 1%;
+    padding-left: 1%;
+  }
+  .seating {
+    grid-template-columns: minmax(0, 1fr) 42px minmax(0, 1fr);
+  }
+  .seatGrid {
+    grid-auto-rows: 65px;
+  }
+  .chair {
+    transform: scale(0.88);
+    transform-origin: bottom center;
+  }
+  .guestSprite {
+    transform: scale(0.86);
+    transform-origin: bottom center;
+  }
+  .guestName {
+    font-size: 8px;
+  }
+  .sideDecorLeft {
+    left: 28%;
+  }
+  .sideDecorRight {
+    right: 28%;
+  }
+}
