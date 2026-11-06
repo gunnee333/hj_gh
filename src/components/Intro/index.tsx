@@ -47,6 +47,7 @@ export interface EnvelopeStageProps extends Partial<CoverFace> {
   onOpened?: () => void;
   /** 스테이지가 완전히 사라진 뒤 */
   onClosed?: () => void;
+  onComplete?: () => void;
 }
 
 interface Steps {
@@ -241,7 +242,8 @@ export default function EnvelopeStage({
   autoOpen = false,
   onOpenStart,
   onOpened,
-  onClosed
+  onClosed,
+  onComplete
 }: EnvelopeStageProps) {
   const stageRef = useRef<HTMLDivElement>(null);
   const envelopeRef = useRef<HTMLDivElement>(null);
@@ -456,6 +458,7 @@ export default function EnvelopeStage({
     if (openedRef.current) return;
     openedRef.current = true;
     latest.current.onOpenStart?.();
+    onComplete?.();
     addStep('s1'); //                          씰이 떨어짐
     at(360, () => addStep('s2')); //           플랩이 뒤로 접힘
     at(620, petals); //                        꽃잎

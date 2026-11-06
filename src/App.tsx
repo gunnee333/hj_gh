@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Menu, Intro, AniOverlay } from './components';
 import {
   Header,
@@ -12,25 +13,29 @@ import {
 import styles from './layout.module.scss';
 
 export default function App() {
+  const [intro, setIntro] = useState(true);
+
   return (
     <>
       <AniOverlay.Heart className={styles.animation} />
-      <Intro />
-      <div className={styles.wrap}>
-        <Menu />
-        <div className={styles.layout}>
-          <div className={styles.page}>
-            <Header />
-            <InviteText />
-            <Calendar />
-            <Gallery />
-            <Infomation />
-            <Location />
-            <Account />
-            <GuestBook />
+      <Intro onComplete={() => setIntro(false)} />
+      {!intro && (
+        <div className={styles.wrap}>
+          <Menu />
+          <div className={styles.layout}>
+            <div className={styles.page}>
+              <Header />
+              <InviteText />
+              <Calendar />
+              <Gallery />
+              <Infomation />
+              <Location />
+              <Account />
+              <GuestBook />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
