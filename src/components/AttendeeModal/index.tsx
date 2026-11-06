@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './style.module.scss';
 import { Svgs } from '../../assets';
 import Modal from '../../components/Modal';
-import { useAttendee } from '../../hooks';
+import { useAttendee, useGuestBook } from '../../hooks';
 import { IAttendeeInputData } from '../../hooks/useAttendee';
 
 const initData: IAttendeeInputData = {
@@ -25,6 +25,7 @@ export function AttendeeModal({
   close?: () => void;
 }) {
   const { submit, checkComplete } = useAttendee();
+  const { onSubmit } = useGuestBook();
   const [data, setData] = useState<IAttendeeInputData>(initData);
   const [loading, setLoading] = useState(false);
 
@@ -36,6 +37,15 @@ export function AttendeeModal({
     }
     setLoading(true);
     const isDone = await submit(data);
+
+    if (!!data.message) {
+      onSubmit({
+        name: data.name,
+        message: data.message,
+        password: data.password
+      });
+    }
+
     setLoading(false);
     if (isDone) {
       close?.();
@@ -252,19 +262,19 @@ export function AttendeeModal({
               </div>
             </div>
           </div>
-          <div className={[styles.row, styles.hide].join(' ')}>
+          <div className={styles.row}>
             <div className={styles.title}>
-              <span>전달사항</span>
+              <span>방명록</span>
             </div>
             <div className={styles.inputContainer}>
               <textarea
                 value={data.message}
-                placeholder="선택) ex.유아용 의자 필요"
+                placeholder="축하 메시지를 남겨주세요. (최대 300자)"
                 onChange={(e) => {
                   e.target.style.height = `${e.target.scrollHeight}px`;
                   setData((prev) => ({ ...prev, message: e.target.value }));
                 }}
-                maxLength={250}
+                maxLength={300}
               />
             </div>
           </div>

@@ -1,86 +1,547 @@
-@keyframes lightExpand {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.01;
-  }
-  20% {
-    opacity: 0.05;
-  }
-  30% {
-    opacity: 0.1;
-  }
-  60% {
-    opacity: 0.3;
-  }
-  90% {
-    opacity: 0.8;
-  }
+/* ============================================================
+   EnvelopeStage.module.scss
+   - CSS Modules: import styles from './EnvelopeStage.module.scss' → className={styles.xxx}
+   - 클래스명은 해시 처리되므로 기존 프로젝트 CSS 와 충돌하지 않음
+   - 색/폰트는 .root 의 --ev-* 변수로 덮어쓸 수 있음
+   - 폰트: index.html <head> 에 넣어도 되고, 아래 @import 를 써도 됨
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Nanum+Myeongjo:wght@400;700&family=Pinyon+Script&display=swap');
 
-  100% {
-    transform: translate(-50%, -50%) scale(20);
-    opacity: 1;
-  }
+/* 변수는 .root 와 .core 양쪽에 둡니다 → 스테이지가 사라진 뒤에도 본문의 CoverCore 에서 그대로 사용 */
+.root,
+.core {
+  --ev-paper: #f4efe3;
+  --ev-card: #fbf8f1;
+  --ev-ink: #33402a;
+  --ev-ink-2: #56634a;
+  --ev-ink-3: #7f8672;
+  --ev-gold: #9c7e3e;
+  --ev-gold-ink: #7a5f2b;
+  --ev-foil: linear-gradient(
+    105deg,
+    #74572a 0%,
+    #a3844a 22%,
+    #cdb47c 40%,
+    #a4864b 56%,
+    #7c5f2f 74%,
+    #b0955c 90%,
+    #80633a 100%
+  );
+  --ev-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --ev-kr: 'Nanum Myeongjo', 'Noto Serif KR', 'AppleMyungjo', serif;
+  --ev-en: 'Cormorant Garamond', 'Times New Roman', serif;
+  --ev-sc: 'Pinyon Script', cursive;
+  --ev-ease: cubic-bezier(0.22, 0.7, 0.18, 1);
+  --ev-grow: cubic-bezier(0.7, 0, 0.18, 1);
 }
 
-.container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.root {
+  font-family: var(--ev-kr);
+  color: var(--ev-ink);
+  font-feature-settings: 'lnum';
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.root,
+.root *,
+.core * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.paper {
+  background-color: var(--ev-paper);
+  background-image:
+    var(--ev-noise),
+    radial-gradient(
+      120% 60% at 50% 0%,
+      rgba(255, 252, 243, 0.7),
+      transparent 60%
+    );
+}
+
+.foil {
+  background: var(--ev-foil);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.caps {
+  font-family: var(--ev-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ev-ink-2);
+  font-weight: 500;
+}
+
+/* ───────── 카드 앞면 (타이틀 블록) ───────── */
+.core {
+  width: min(330px, calc(100vw - 60px));
+  text-align: center;
+  font-family: var(--ev-kr);
+  color: var(--ev-ink);
+  font-feature-settings: 'lnum';
+  -webkit-font-smoothing: antialiased;
+}
+
+.core h1 {
+  font-family: var(--ev-sc);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--ev-ink);
+  white-space: nowrap;
+  margin-bottom: 16px;
+}
+
+.core h1 .kicker {
+  display: block;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.core h1 .nm {
+  position: relative;
+  display: inline-block;
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+.namesKo {
+  font-size: 0.9rem;
+  letter-spacing: 0.42em;
+  margin-top: 10px;
+  color: var(--ev-ink);
+  padding-left: 0.42em;
+}
+
+.namesKo span {
+  color: var(--ev-gold-ink);
+  margin: 0 0.2em;
+}
+
+.coreDate {
+  font-family: var(--ev-en);
+  font-size: 0.9rem;
+  letter-spacing: 0.24em;
+  color: var(--ev-ink-2);
+  margin-top: 14px;
+  padding-left: 0.24em;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000000;
-  opacity: 1;
-  transition: opacity 1s ease;
+}
 
-  &.fadeOut {
+.coreDate b {
+  font-weight: 600;
+  color: var(--ev-gold-ink);
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  margin-left: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envFloat,
+  .tapEn {
+    animation: none;
+  }
+}
+
+/* ───────── ENVELOPE STAGE ───────── */
+.stage {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: var(--page-width);
+  max-width: var(--page-width);
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 50;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.stage.done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    90% 70% at 50% 50%,
+    transparent 55%,
+    rgba(90, 80, 50, 0.1)
+  );
+}
+
+.intro {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 1.2s var(--ev-ease),
+    transform 1.2s var(--ev-ease);
+}
+
+.ready .intro {
+  opacity: 1;
+  transform: none;
+}
+
+.introTop {
+  margin-bottom: 40px;
+}
+
+.introNames {
+  font-family: var(--ev-sc);
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin-top: 12px;
+  color: var(--ev-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.introNames span {
+  font-family: var(--ev-en);
+  font-style: italic;
+  margin: 0 6px;
+  color: var(--ev-gold-ink);
+}
+
+.goldline {
+  display: block;
+  width: 44px;
+  height: 1px;
+  margin: 16px auto 0;
+  background: var(--ev-foil);
+}
+
+.introBottom {
+  margin-top: 52px;
+  transition-delay: 0.25s;
+}
+
+.tapEn {
+  font-family: var(--ev-en);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ev-ink-2);
+  letter-spacing: 0.04em;
+  animation: breathe 2.8s ease-in-out infinite;
+}
+
+.tapKo {
+  font-size: 0.8rem;
+  color: var(--ev-ink-3);
+  letter-spacing: 0.12em;
+  margin-top: 8px;
+}
+
+@keyframes breathe {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.s1 .intro {
+  opacity: 0 !important;
+  transform: translateY(-6px) !important;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.envIn {
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  transition:
+    opacity 1.3s var(--ev-ease) 0.1s,
+    transform 1.3s var(--ev-ease) 0.1s;
+}
+
+.ready .envIn {
+  opacity: 1;
+  transform: none;
+}
+
+.envFloat {
+  animation: float 5s ease-in-out infinite;
+}
+
+.s1 .envFloat {
+  animation-play-state: paused;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.envelope {
+  position: relative;
+  width: min(370px, 94vw);
+  aspect-ratio: 320/214;
+  perspective: 1200px;
+  transition: transform 1.2s cubic-bezier(0.6, 0, 0.2, 1);
+}
+
+.envelope:focus-visible {
+  outline: 1px dashed var(--ev-gold);
+  outline-offset: 10px;
+}
+
+.envelope > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.envShadow {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: -18px;
+  height: 34px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(30, 36, 18, 0.34),
+    transparent 70%
+  );
+  filter: blur(6px);
+  transition: opacity 0.8s;
+}
+
+.envBack {
+  z-index: 0;
+}
+
+.envFront {
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 -1.5px 2.5px rgba(10, 14, 6, 0.32));
+}
+
+.card {
+  position: absolute;
+  left: 4%;
+  top: 5%;
+  width: 92%;
+  height: 90%;
+  z-index: 2;
+  background-color: var(--ev-card);
+  background-image: var(--ev-noise);
+  box-shadow:
+    0 1px 2px rgba(40, 40, 20, 0.14),
+    0 14px 30px -14px rgba(30, 36, 18, 0.45);
+  transition: transform 1.25s cubic-bezier(0.45, 0, 0.15, 1);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(51, 64, 42, 0.22);
+  transition: opacity 0.7s ease;
+}
+
+.card .core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card.flying {
+  transform: none !important;
+  z-index: 20;
+}
+
+.card.flying.grow {
+  transition:
+    left 1.15s var(--ev-grow),
+    top 1.15s var(--ev-grow),
+    width 1.15s var(--ev-grow),
+    height 1.15s var(--ev-grow),
+    background-color 1.15s ease,
+    box-shadow 1.15s ease;
+  background-color: var(--ev-paper);
+  box-shadow: none;
+}
+
+.card.flying.grow::before {
+  opacity: 0;
+}
+
+.core.flyingCore {
+  position: absolute;
+  z-index: 22;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.core.flyingCore.go {
+  transition: transform 1.15s var(--ev-grow);
+}
+
+.flap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 58%;
+  z-index: 4;
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  transition: transform 1.05s cubic-bezier(0.55, 0.05, 0.25, 1);
+}
+
+.flap .face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flap .face.front {
+  filter: drop-shadow(0 2px 2.5px rgba(16, 22, 10, 0.38));
+}
+
+.flap .face.back {
+  transform: rotateX(180deg);
+}
+
+.flap .face svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.seal {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 25%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+}
+
+.seal svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sealTxt {
+  font-family: var(--ev-en);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 23px;
+  fill: url(#ev-goldDeep);
+}
+
+.sealTxt .amp {
+  font-size: 13px;
+}
+
+.sealYr {
+  font-family: var(--ev-en);
+  font-size: 5.6px;
+  letter-spacing: 1.8px;
+  fill: url(#ev-goldDeep);
+  font-weight: 600;
+}
+
+.s1 .seal {
+  animation: sealDrop 1s cubic-bezier(0.45, 0, 0.7, 0.2) forwards;
+}
+
+@keyframes sealDrop {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+
+  12% {
+    transform: translate(-50%, -50%) rotate(3deg) scale(1.03);
+  }
+
+  24% {
+    transform: translate(-50%, -57%) rotate(-5deg) scale(1.08);
+  }
+
+  100% {
+    transform: translate(-34%, 170%) rotate(-40deg) scale(0.9);
     opacity: 0;
   }
+}
 
-  .video {
-    height: auto;
-    min-width: var(--page-width);
-    min-height: 100vh;
-  }
+.s2 .flap {
+  transform: rotateX(180deg);
+}
 
-  .light {
-    z-index: 3;
-    position: fixed;
-    overflow: hidden;
-    width: 100%;
-    height: 100vh;
+.s3 .card {
+  transform: translateY(-108%);
+}
 
-    &::after {
-      content: '';
-      position: absolute;
+.s3 .envelope {
+  transform: translateY(30%);
+}
 
-      /* 가운데 정렬 */
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
+/* envelope keeps its full colour and simply drops out of frame */
+.s5 .envIn {
+  opacity: 1;
+  transform: translateY(110vh);
+  transition: transform 1s cubic-bezier(0.6, 0, 0.75, 0.35);
+}
 
-      width: 100px;
-      height: 100px;
+/* petals */
+.petals {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: var(--page-width);
+  height: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 70;
+  overflow: hidden;
+}
 
-      border-radius: 50%;
+.petal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform, opacity;
+}
 
-      /* 가운데는 밝고, 바깥쪽으로 갈수록 자연스럽게 투명 */
-      background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0.9) 10%,
-        rgba(255, 255, 255, 0.4) 40%,
-        rgba(255, 255, 255, 0) 100%
-      );
-
-      filter: blur(15px);
-
-      animation: lightExpand 3s ease-out forwards;
-    }
-  }
+.petal svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
